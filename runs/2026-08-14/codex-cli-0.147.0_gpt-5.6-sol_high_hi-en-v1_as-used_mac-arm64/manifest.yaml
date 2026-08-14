@@ -1,0 +1,175 @@
+schema_version: "pilot-0.2"
+protocol_version: "manual-hi-tax-0.2"
+
+scenario:
+  id: "20260814_codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64"
+  captured_from_utc: "2026-08-14T13:59:44.860Z"
+  captured_to_utc: "2026-08-14T14:42:54.258Z"
+  planned_repetitions: 3
+  valid_repetitions: 3
+
+contributor:
+  github_handle: "@keting"
+
+agent:
+  product: "OpenAI Codex CLI"
+  vendor: "OpenAI"
+  distribution: "first-party"
+  surface: "cli"
+  version: "0.147.0"
+  build: "not_exposed"
+  executable: "~/.local/bin/codex"
+
+environment:
+  os: "macOS"
+  os_version: "26.5.2"
+  os_build: "25F84"
+  architecture: "arm64"
+  locale: "C.UTF-8"
+  timezone: "Asia/Shanghai"
+
+account:
+  auth_channel: "subscription-login"
+  subscription_plan: "ChatGPT Pro"
+  usage_multiplier: "20x"
+  billing_mode: "included-quota"
+  quota_shared_scope: "account"
+  plan_evidence_status: "verified"
+
+route:
+  category: "first-party-subscription"
+  provider: "OpenAI"
+  protocol: "native"
+  cache_policy: "automatic-observed"
+
+model:
+  requested: "gpt-5.6-sol"
+  observed: "gpt-5.6-sol"
+  observation_method: "event-log"
+
+reasoning:
+  effort_requested: "high"
+  effort_observed: "high"
+  mode: "not_exposed"
+  summaries: "auto"
+  service_tier: "not_exposed"
+
+generation_parameters:
+  temperature: "not_exposed"
+  top_p: "not_exposed"
+  max_output_tokens: "not_exposed"
+  other: {}
+
+harness:
+  context_profile: "as-used"
+  session_state: "fresh"
+  workspace_type: "empty-directory"
+  prior_human_chat_turns: 0
+  environment_context_injected: true
+  agents_md_observed: "none"
+  built_in_tools: "not_exposed"
+  plugins_enabled: []
+  mcp_servers_enabled: []
+  explicitly_disabled_mcp_servers:
+    - "feishu-sheets"
+    - "lark-feishu"
+    - "node_repl"
+    - "openaiDeveloperDocs"
+  skills_enabled:
+    - "imagegen"
+    - "openai-docs"
+    - "plugin-creator"
+    - "skill-creator"
+    - "skill-installer"
+    - "extract-approach"
+    - "playwright"
+    - "project-tracking-weekly-diff"
+    - "study-deeply"
+    - "web-research"
+  hooks_enabled:
+    - "user-prompt local observability"
+    - "stop Feishu notification"
+    - "stop prompt metadata logging"
+    - "stop local observability"
+    - "permission-request local observability"
+    - "session-end local observability"
+  hook_model_calls_observed: 0
+  hook_model_call_assessment: "local-code-inspection"
+  network_mode: "enabled"
+  permission_mode: "Workspace (Ask for approval)"
+  filesystem_profile_observed: "managed/restricted"
+
+prompt:
+  case_id: "hi-en-v1"
+  file: "prompt.txt"
+  sha256: "8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4"
+  bytes: 2
+  encoding: "UTF-8"
+  language: "en"
+  leading_whitespace: false
+  trailing_whitespace: false
+  submit_method: "typed"
+
+measurement:
+  primary_metric: "context_total_tokens"
+  secondary_metric: "cli_total_excluding_cached"
+  context_total_definition: "input tokens including cached input, plus output tokens"
+  cli_total_definition: "non-cached input tokens plus output tokens"
+  cli_total_is_subscription_cost: false
+  latency_method: "user-message event to assistant-message event"
+
+aggregate:
+  context_total_tokens:
+    values: [13964, 13963, 13964]
+    min: 13963
+    median: 13964
+    max: 13964
+  cli_total_excluding_cached:
+    values: [8076, 13963, 3980]
+    min: 3980
+    median: 8076
+    max: 13963
+  response_latency_ms:
+    values: [3657, 3561, 3308]
+    min: 3308
+    median: 3561
+    max: 3657
+
+quota:
+  attribution: "contaminated"
+  notes: "Other sessions used the same account during the observation window; UI percentage is excluded from results."
+
+evidence:
+  package_level: "A"
+  field_statuses:
+    agent_version: "verified"
+    subscription_plan: "verified"
+    route: "private_evidence"
+    model: "verified"
+    reasoning_effort: "verified"
+    environment: "private_evidence"
+    workspace_and_session: "private_evidence"
+    skills_and_hooks: "self_reported"
+  public_files:
+    - "evidence/environment.png"
+    - "evidence/subscription.png"
+    - "evidence/preflight.txt"
+    - "evidence/private-evidence.md"
+    - "attempts/r1/response.png"
+    - "attempts/r2/response.png"
+    - "attempts/r3/response.png"
+    - "attempts/r1/events.sanitized.jsonl"
+    - "attempts/r2/events.sanitized.jsonl"
+    - "attempts/r3/events.sanitized.jsonl"
+  withheld_private_evidence: true
+  redactions:
+    - "Preflight transcription replaces the home directory with ~ and removes the shell prompt."
+    - "Status and exit screenshots with account, host, path, or Session ID are withheld rather than visually edited."
+
+protocol:
+  deviations:
+    - "R1 has no exit usage screenshot; cli_total_excluding_cached is derived from event fields."
+    - "R2 has a later aborted turn outside the recorded hi measurement window; it emitted no token_count."
+    - "Shared quota observations are contaminated and excluded."
+    - "UI showed 1M before the first request while event logs reported a 258400 model context window."
+  notes: "The earlier resumed pilot is not included in these three valid repetitions."

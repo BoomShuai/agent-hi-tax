@@ -1,0 +1,9 @@
+codex_executable: ~/.local/bin/codex
+codex_version: codex-cli 0.147.0
+os_product: macOS
+os_version: 26.5.2
+os_build: 25F84
+architecture: arm64
+captured_at_utc: 2026-08-14T14:03:56Z
+source: maintainer preflight command output
+public_sanitization: home directory replaced with ~; shell prompt removed

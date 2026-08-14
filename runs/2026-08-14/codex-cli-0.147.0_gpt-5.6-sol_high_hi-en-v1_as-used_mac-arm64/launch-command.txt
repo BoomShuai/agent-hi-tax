@@ -1,0 +1,9 @@
+codex \
+  --no-alt-screen \
+  --disable plugins \
+  -m gpt-5.6-sol \
+  -c 'model_reasoning_effort="high"' \
+  -c 'mcp_servers.feishu-sheets.enabled=false' \
+  -c 'mcp_servers.lark-feishu.enabled=false' \
+  -c 'mcp_servers.node_repl.enabled=false' \
+  -c 'mcp_servers.openaiDeveloperDocs.enabled=false'

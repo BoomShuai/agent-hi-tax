@@ -1,0 +1,49 @@
+attempt: 1
+status: "valid|invalid|error|cancelled|timed-out"
+started_at_utc: "YYYY-MM-DDTHH:MM:SS.sssZ"
+assistant_message_at_utc: "YYYY-MM-DDTHH:MM:SS.sssZ"
+usage_recorded_at_utc: "YYYY-MM-DDTHH:MM:SS.sssZ"
+response_latency_ms: "<integer or not_exposed>"
+latency_method: "assistant-message-event|provider-timestamps|screen-recording|manual-stopwatch|not_exposed"
+
+model_observed: "<model or not_exposed>"
+effort_observed: "<native label or not_exposed>"
+
+usage:
+  source: "event-log|exit-ui|event-log-and-exit-ui|provider-dashboard|not_exposed"
+  input_tokens_including_cached: "<integer or not_exposed>"
+  cached_input_tokens: "<integer or not_exposed>"
+  non_cached_input_tokens: "<integer or not_exposed>"
+  output_tokens: "<integer or not_exposed>"
+  reasoning_output_tokens: "<integer or not_exposed>"
+  context_total_tokens: "<integer or not_exposed>"
+  cli_total_excluding_cached: "<integer or not_exposed>"
+  cli_total_source: "<source or not_exposed>"
+  cache_write_input_tokens: "<integer or not_exposed>"
+  model_context_window_event: "<integer or not_exposed>"
+
+response:
+  file: "response.txt"
+  exact_text_sha256: "<sha256 or not_exposed>"
+
+activity:
+  tool_calls: "<integer or not_exposed>"
+  approvals: "<integer or not_exposed>"
+  errors: []
+
+quota:
+  before: "<raw value or not_measured>"
+  after: "<raw value or not_measured>"
+  attribution: "valid|contaminated|not_measured|not_exposed"
+
+evidence:
+  response_screenshot: "response.png|not_provided"
+  usage_screenshot: "usage.png|private_evidence|not_provided"
+  sanitized_events: "events.sanitized.jsonl|not_provided"
+  field_statuses:
+    prompt_and_response: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    usage: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    timing: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    quota: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+
+deviations: []

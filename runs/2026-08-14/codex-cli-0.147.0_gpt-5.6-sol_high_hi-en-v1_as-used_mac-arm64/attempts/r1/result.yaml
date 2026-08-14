@@ -1,0 +1,49 @@
+attempt: 1
+status: "valid"
+started_at_utc: "2026-08-14T13:59:44.860Z"
+assistant_message_at_utc: "2026-08-14T13:59:48.517Z"
+usage_recorded_at_utc: "2026-08-14T13:59:48.611Z"
+response_latency_ms: 3657
+latency_method: "assistant-message-event"
+model_observed: "gpt-5.6-sol"
+effort_observed: "high"
+
+usage:
+  source: "event-log"
+  input_tokens_including_cached: 13950
+  cached_input_tokens: 5888
+  non_cached_input_tokens: 8062
+  output_tokens: 14
+  reasoning_output_tokens: 0
+  context_total_tokens: 13964
+  cli_total_excluding_cached: 8076
+  cli_total_source: "derived-from-event-log"
+  cache_write_input_tokens: 0
+  model_context_window_event: 258400
+
+response:
+  file: "response.txt"
+  exact_text_sha256: "a65de25805112fa8bd31c0c30da9bea5ea4aa2fc5d941085342fc4b23396a2c5"
+
+activity:
+  tool_calls: 0
+  approvals: 0
+  errors: []
+
+quota:
+  before: "61% left"
+  after: "61% left"
+  attribution: "contaminated"
+
+evidence:
+  response_screenshot: "response.png"
+  usage_screenshot: "not_provided"
+  sanitized_events: "events.sanitized.jsonl"
+  field_statuses:
+    prompt_and_response: "verified"
+    usage: "verified"
+    timing: "verified"
+    quota: "private_evidence"
+
+deviations:
+  - "Exit usage screenshot was not captured; CLI total is derived from exact event fields."

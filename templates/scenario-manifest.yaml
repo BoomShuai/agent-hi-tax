@@ -1,0 +1,110 @@
+schema_version: "pilot-0.2"
+protocol_version: "manual-hi-tax-0.2"
+
+scenario:
+  id: "<date>_<agent>_<model>_<effort>_<case-id>_<profile>_<platform>"
+  captured_from_utc: "YYYY-MM-DDTHH:MM:SSZ"
+  captured_to_utc: "YYYY-MM-DDTHH:MM:SSZ"
+  planned_repetitions: 3
+  valid_repetitions: 0
+
+contributor:
+  github_handle: "@your-handle"
+
+agent:
+  product: "<product>"
+  vendor: "<vendor>"
+  distribution: "first-party|community|third-party"
+  surface: "cli|web|desktop|ide|api|other"
+  version: "<exact version or not_exposed>"
+  build: "<exact build or not_exposed>"
+
+environment:
+  os: "<name>"
+  os_version: "<version>"
+  architecture: "<architecture>"
+  locale: "<locale or not_exposed>"
+  timezone: "<IANA timezone>"
+
+account:
+  auth_channel: "subscription-login|official-api-key|gateway-account|local|other"
+  subscription_plan: "<plan or not_applicable>"
+  usage_multiplier: "<native label or not_exposed>"
+  billing_mode: "included-quota|pay-as-you-go|credits|local-compute|unknown"
+  quota_shared_scope: "account|workspace|team|api-project|gateway-balance|not_applicable|unknown"
+
+route:
+  category: "first-party-subscription|official-api|third-party-gateway|self-hosted"
+  provider: "<provider>"
+  protocol: "native|openai-compatible|anthropic-compatible|other|unknown"
+  gateway_public_name: "<name or not_applicable>"
+  gateway_public_domain: "<public domain or not_applicable>"
+  upstream_model_claimed: "<model or not_applicable>"
+  cache_policy: "<native setting, automatic, unknown, or not_applicable>"
+  fallback_policy: "<native setting, unknown, or not_applicable>"
+
+model:
+  requested: "<exact selector>"
+  observed: "<event/UI value or not_exposed>"
+  observation_method: "ui-status|cli-status|event-log|provider-receipt|not_exposed"
+
+reasoning:
+  effort_requested: "<native label or not_exposed>"
+  effort_observed: "<native label or not_exposed>"
+  mode: "<native mode or not_exposed>"
+  service_tier: "<native label or not_exposed>"
+
+generation_parameters:
+  temperature: "<value or not_exposed>"
+  top_p: "<value or not_exposed>"
+  max_output_tokens: "<value or not_exposed>"
+  other: {}
+
+harness:
+  context_profile: "standard-clean|as-used|custom"
+  session_state: "fresh|warm|resumed"
+  prior_human_chat_turns: 0
+  workspace_type: "empty-directory|repository|none|other"
+  environment_context_injected: "true|false|not_exposed"
+  instruction_files: []
+  built_in_tools: "<list or not_exposed>"
+  plugins_enabled: []
+  skills_enabled: []
+  mcp_servers_enabled: []
+  hooks_enabled: []
+  hook_model_calls_observed: "<integer or not_exposed>"
+  hook_model_call_assessment: "<method or not_exposed>"
+  network_mode: "enabled|disabled|restricted|not_exposed"
+  permission_mode: "<native label or not_exposed>"
+  filesystem_profile_observed: "<native label or not_exposed>"
+
+prompt:
+  case_id: "hi-en-v1"
+  file: "prompt.txt"
+  sha256: "<sha256>"
+  bytes: 2
+  encoding: "UTF-8"
+  language: "en"
+  leading_whitespace: false
+  trailing_whitespace: false
+
+quota:
+  attribution: "valid|contaminated|not_measured|not_exposed"
+  notes: ""
+
+evidence:
+  package_level: "A|B|C"
+  field_statuses:
+    agent_version: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    subscription_plan: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    model: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    reasoning_effort: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    harness: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    environment: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+  public_files: []
+  withheld_private_evidence: false
+  redactions: []
+
+protocol:
+  deviations: []
+  notes: ""
