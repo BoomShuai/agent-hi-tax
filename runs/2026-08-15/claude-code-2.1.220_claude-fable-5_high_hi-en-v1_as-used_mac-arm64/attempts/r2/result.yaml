@@ -50,13 +50,13 @@ quota:
   attribution: "not_measured"
 
 evidence:
-  response_screenshot: "private_evidence"
+  response_screenshot: "response.png"
   usage_screenshot: "not_provided"
   sanitized_events: "events.sanitized.jsonl"
   field_statuses:
     prompt_and_response: "verified"
     usage: "verified"
-    timing: "private_evidence"
+    timing: "verified"
     quota: "not_provided"
 
 deviations: []

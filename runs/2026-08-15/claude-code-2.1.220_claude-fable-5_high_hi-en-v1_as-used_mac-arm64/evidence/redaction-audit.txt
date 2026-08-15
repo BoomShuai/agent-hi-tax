@@ -1,0 +1,49 @@
+Redaction method: deterministic opaque black rectangles on decoded PNG pixels.
+Coordinate convention: inclusive x1,y1 through x2,y2, origin at top-left.
+No image was resized, cropped, blurred, or generatively redrawn.
+
+environment.redacted.png
+  dimensions: 823x757 (unchanged)
+  original_sha256: 5ae88c8067881a0861a2e17a6597f1345c6d0f6d6ee1d23965ae4558d34b7dd9
+  public_sha256: 907f27a1fea511eb2dce650d8a46450df29202aed7bd62465e6ea18170dd7418
+  rectangles: 14,2-306,33; 14,216-52,241; 14,241-408,273; 168,420-584,455; 168,451-723,484; 196,481-822,515; 14,716-308,756
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+status.redacted.png
+  dimensions: 1395x538 (unchanged)
+  original_sha256: fed8c312f7c9f5354cf41f16ea136a1b7f34a0050880fd4c5be62a0361740b75
+  public_sha256: d53d7d7e99b0c79e21e10d08f008eb59ac792b1df003196154f8cdfdd21f9905
+  rectangles: 284,232-810,264; 284,262-1394,294; 284,321-872,355; 284,351-670,385
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+effort-high.png
+  dimensions: 1419x370 (unchanged)
+  original_sha256: 70deae13d03fe8909b7b96cc13e5761304126bee6f3e00faecb9c44b87daff82
+  public_sha256: 70deae13d03fe8909b7b96cc13e5761304126bee6f3e00faecb9c44b87daff82
+  decoded_pixel_difference_count: 0
+
+attempts/r1/response.png
+  dimensions: 842x336 (unchanged)
+  original_sha256: d182ab2454d93a14c71bf09ab5178cb7c8d152127533e7795b69b6108d8db7f7
+  public_sha256: d182ab2454d93a14c71bf09ab5178cb7c8d152127533e7795b69b6108d8db7f7
+  decoded_pixel_difference_count: 0
+
+attempts/r2/response.png
+  dimensions: 766x840 (unchanged)
+  original_sha256: 2089edb20741545deb05fda4516cc7daeeae81f8cc54beed22c2deedf7b28007
+  public_sha256: b067b844813673bec4b19353ab8091cc00e48ef647a5e26464362885568305e7
+  rectangles: 396,79-562,115; 90,258-680,295
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+attempts/r3/response.png
+  dimensions: 760x833 (unchanged)
+  original_sha256: a183cc203bf3b3e3dc95338adf76e6e5783556dbf3470429de1797c91a12d7b4
+  public_sha256: 046842857808c6211f6a3c4004a735d3b0086721e1b1df11a101d9ea5619f663
+  rectangles: 405,77-572,113; 98,256-690,293
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+Secondary privacy check: OCR on every public PNG produced no match for the private email domain, account name, hostname, absolute home path, or UUID-shaped session identifier. OCR is a heuristic supplement, not a substitute for visual review.

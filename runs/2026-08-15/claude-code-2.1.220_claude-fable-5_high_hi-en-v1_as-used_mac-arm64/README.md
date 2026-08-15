@@ -65,14 +65,16 @@ Claude Code 的本地 transcript 可能为同一个 assistant message 写入中�
 
 公开包包含：
 
+- 脱敏后的[环境与认证截图](evidence/environment.redacted.png)、[状态截图](evidence/status.redacted.png)和[effort 截图](evidence/effort-high.png)；
+- 三次公开回复截图：[R1](attempts/r1/response.png)、[R2](attempts/r2/response.png)、[R3](attempts/r3/response.png)；
 - 场景级[脱敏预检转录](evidence/preflight.txt)；
 - [harness 状态转录](evidence/harness.txt)；
 - 三份去重后的最小 transcript 事件：[R1](attempts/r1/events.sanitized.jsonl)、[R2](attempts/r2/events.sanitized.jsonl)、[R3](attempts/r3/events.sanitized.jsonl)；
 - 三份精确回复文本与 SHA-256；
-- 私有视觉证据的[哈希登记表](evidence/private-evidence.md)；
+- 私有原图与公开副本的[哈希登记表](evidence/private-evidence.md)，以及可复核的[遮挡审计记录](evidence/redaction-audit.txt)；
 - 所有公开文件的 SHA-256。
 
-原始截图同时含有邮箱、组织名、本机路径、用户名或 Session ID，因此没有进入 Git。包级为 Level A，但视觉部分的字段状态明确标为 `private_evidence`，不能把私有哈希夸大为公开证明。
+原始截图仍因含有邮箱、组织名、本机路径、用户名或 Session ID 而不进入 Git。公开副本只用固定坐标的纯黑矩形覆盖敏感区域，不缩放、不裁剪、不生成式重绘；遮挡范围之外的解码 RGB 像素与原图完全一致，Alpha 通道也完全一致。包级仍为 Level A，视觉证据现为公开可复核。
 
 ## 已知偏差
 

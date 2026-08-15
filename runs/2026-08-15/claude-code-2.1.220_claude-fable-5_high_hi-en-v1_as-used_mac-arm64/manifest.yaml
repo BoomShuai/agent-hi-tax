@@ -151,27 +151,36 @@ quota:
 
 evidence:
   package_level: "A"
-  visual_evidence_access: "private_evidence"
+  visual_evidence_access: "public"
   field_statuses:
     agent_version: "verified"
     subscription_plan: "verified"
     usage_multiplier: "not_provided"
-    route: "private_evidence"
+    route: "verified"
     model: "verified"
     reasoning_effort: "verified"
-    environment: "private_evidence"
-    workspace_and_session: "private_evidence"
+    environment: "verified"
+    workspace_and_session: "verified"
     mcp_plugins_and_hooks: "self_reported"
   public_files:
+    - "evidence/environment.redacted.png"
+    - "evidence/status.redacted.png"
+    - "evidence/effort-high.png"
     - "evidence/preflight.txt"
     - "evidence/harness.txt"
     - "evidence/private-evidence.md"
+    - "evidence/redaction-audit.txt"
+    - "attempts/r1/response.png"
+    - "attempts/r2/response.png"
+    - "attempts/r3/response.png"
     - "attempts/r1/events.sanitized.jsonl"
     - "attempts/r2/events.sanitized.jsonl"
     - "attempts/r3/events.sanitized.jsonl"
   withheld_private_evidence: true
   redactions:
-    - "Raw screenshots are withheld because the same frames contain account, organization, local path, or session identifiers."
+    - "Public PNGs use deterministic opaque rectangles over account, organization, local path, username, hostname, and session identifiers."
+    - "Image dimensions are unchanged; decoded RGB pixels outside the declared rectangles and all alpha-channel pixels match the private originals exactly."
+    - "Private originals remain outside Git and are linked to the public copies by SHA-256 in the evidence register."
     - "Public transcripts omit message IDs, session IDs, account fields, hostnames, usernames, and absolute paths."
 
 protocol:
@@ -180,5 +189,5 @@ protocol:
     - "R2 and R3 used only the local status command before hi."
     - "Exact Claude Max usage multiplier was not captured; only the Max plan is verified."
     - "Latency is the rounded whole-second UI display, not an event-timestamp measurement."
-    - "Original screenshots are private; only hashes and sanitized transcriptions are public."
+    - "Private originals are withheld, while deterministic redacted copies and their redaction audit are public."
   notes: "Usage was extracted after exit from the local transcript. The in-session usage command was deliberately avoided to reduce observer effects."
