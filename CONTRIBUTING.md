@@ -185,9 +185,11 @@ find . -type f ! -name SHA256SUMS -print0 \
 cd -
 
 ./scripts/verify-run-package.sh runs/YYYY-MM-DD/<scenario-id>
+python3 scripts/build-results-index.py
+./scripts/verify-all.sh
 ```
 
-Linux 没有 `shasum` 时可使用 `sha256sum`。任何公开文件变化后都要重新生成哈希。
+Linux 没有 `shasum` 时可使用 `sha256sum`。任何公开文件变化后都要重新生成哈希。汇总页 [RESULTS.md](RESULTS.md) 由全部场景的 manifest 与 `RESULTS.csv` 自动生成；新增或修改场景后必须重建，Pull Request 会用 `verify-all.sh` 检查它是否漂移。
 
 ## Token 与额度口径
 
@@ -311,6 +313,7 @@ runs/YYYY-MM-DD/<scenario-id>/
 - [ ] 缺失或冲突字段已使用固定状态；
 - [ ] 公开文件没有凭据、邮箱、绝对 home 路径或会话恢复标识；
 - [ ] `SHA256SUMS` 是最后生成的；
-- [ ] `verify-run-package.sh` 通过。
+- [ ] 已重建根级 `RESULTS.md`；
+- [ ] `verify-all.sh` 通过。
 
 重复测试非常欢迎。不同贡献者、不同设备、不同订阅和不同时间的独立复测，正是这个项目逐渐变得有价值的方式。

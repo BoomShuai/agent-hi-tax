@@ -10,6 +10,8 @@
 
 > 在一个明确、可复核的环境里，发出一句完全相同的输入，到底发生了什么，又消耗了什么？
 
+[查看 Hi Tax Index：所有 Agent 场景的汇总对比](RESULTS.md)
+
 ## 这是什么
 
 Agent Hi Tax 是一个由社区共同维护、以证据为基础的 AI Agent 消耗观察仓库。
@@ -171,9 +173,10 @@ Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过
 - [x] 根据第二个样板增加 Agent adapter 与 Anthropic token 口径
 - [ ] 机器可校验的正式 schema
 - [x] 首版包结构与基础校验脚本
+- [x] 自动生成的 Hi Tax Index 与 Pull Request 一致性检查
 - [ ] 自动采集与确定性脱敏辅助工具
 - [ ] 待测场景矩阵和 issue 模板
-- [ ] 结果索引与可视化页面
+- [ ] 图表与交互式可视化页面
 - [ ] 英文 README 与贡献指南
 
 ## 仓库结构
@@ -182,15 +185,17 @@ Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过
 
 ```text
 README.md             项目入口和基本说明
+RESULTS.md            自动生成的跨 Agent 汇总索引
 CONTRIBUTING.md       中文贡献流程和证据规则
 prompts/              版本化的标准输入 case
 templates/            场景与单次 attempt 模板
 runs/                 已完成脱敏和核对的公开场景包
-scripts/              包完整性、哈希和隐私线索检查
+scripts/              汇总生成、包完整性、哈希和隐私线索检查
 docs/                 方法说明和流程复盘
+.github/workflows/    Pull Request 自动一致性检查
 ```
 
-正式 schema、自动索引和可视化会在更多 Agent 样板完成后再定型，避免用第一家产品的字段绑死整个项目。
+正式 schema、自动采集和交互式可视化会在更多 Agent 样板完成后再定型，避免用第一家产品的字段绑死整个项目。
 
 ## 如何参与
 
