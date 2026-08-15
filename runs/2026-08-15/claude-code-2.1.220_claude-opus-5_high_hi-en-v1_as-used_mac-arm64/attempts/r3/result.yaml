@@ -1,0 +1,64 @@
+attempt: 3
+status: "valid"
+started_at_utc: "not_exposed"
+assistant_message_at_utc: "2026-08-15T02:45:26.800Z"
+usage_recorded_at_utc: "2026-08-15T02:45:26.800Z"
+response_latency_ms: "not_exposed"
+response_latency_display_seconds: 4
+latency_method: "cli-ui-rounded-seconds"
+
+model_observed: "claude-opus-5"
+effort_observed: "high"
+
+usage:
+  source: "contributor-extracted-local-session-transcript"
+  provider_schema: "anthropic"
+  input_tokens_including_cached: "not_applicable"
+  cached_input_tokens: "not_applicable"
+  non_cached_input_tokens: "not_applicable"
+  cli_total_excluding_cached: "not_applicable"
+  cli_total_source: "not_applicable"
+  cache_write_input_tokens: "not_applicable"
+  model_context_window_event: "not_exposed"
+  input_tokens: 2
+  cache_creation_input_tokens: 24598
+  cache_read_input_tokens: 0
+  total_input_tokens: 24600
+  cache_creation_ephemeral_5m_input_tokens: 0
+  cache_creation_ephemeral_1h_input_tokens: 24598
+  output_tokens: 13
+  reasoning_output_tokens: "not_exposed"
+  context_total_tokens: 24613
+  service_tier: "standard"
+  speed: "standard"
+  iterations: 0
+  iterations_observation: "empty_array"
+  web_search_requests: 0
+  web_fetch_requests: 0
+
+response:
+  file: "response.txt"
+  exact_text_sha256: "a2e6b63bc03ff02f976dd47e7c9a0574c6bd76e0a4ce5310b7e5108e2c9bacc4"
+
+activity:
+  tool_calls: 0
+  approvals: 0
+  errors: []
+
+quota:
+  before: "not_measured"
+  after: "not_measured"
+  attribution: "not_measured"
+
+evidence:
+  response_screenshot: "response.png"
+  usage_screenshot: "not_provided"
+  sanitized_events: "events.sanitized.jsonl"
+  field_statuses:
+    prompt_and_response: "verified"
+    usage: "verified"
+    timing: "verified"
+    quota: "not_provided"
+
+deviations:
+  - "The public response screenshot retains the launch banner but not a status panel; model and effort are also supported by the batch status screenshot and extracted event."

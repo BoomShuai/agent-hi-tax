@@ -45,6 +45,10 @@ VISUAL_LABELS = {
     "not_provided": "无视觉证据",
 }
 
+COMPARISON_LABELS = {
+    "mode-confounded": "对比受 mode 混杂",
+}
+
 TICK = chr(96)
 
 
@@ -244,6 +248,7 @@ def scenario_summary(repo_root: Path, manifest_path: Path) -> dict[str, object]:
     quota_attribution = status_at(
         manifest, "quota.attribution", "not_provided"
     )
+    comparison_status = status_at(manifest, "comparison.status", "")
 
     captured_from = str(value_at(manifest, "scenario.captured_from_utc", ""))
     captured_date = (
@@ -285,6 +290,7 @@ def scenario_summary(repo_root: Path, manifest_path: Path) -> dict[str, object]:
         "package_level": str(package_level),
         "visual_access": str(visual_access),
         "quota_attribution": str(quota_attribution),
+        "comparison_status": str(comparison_status),
         "captured_date": captured_date,
         "package_path": package_dir.relative_to(repo_root),
     }
@@ -382,6 +388,14 @@ def render_index(repo_root: Path) -> str:
                 f"<br><sub>{markdown_cell(item['os'])} "
                 f"{markdown_cell(item['architecture'])}</sub>"
             )
+            if item["comparison_status"]:
+                comparison_label = COMPARISON_LABELS.get(
+                    str(item["comparison_status"]),
+                    str(item["comparison_status"]),
+                )
+                harness_label += (
+                    f"<br><sub>{markdown_cell(comparison_label)}</sub>"
+                )
             latency_label = (
                 f"{markdown_cell(item['latency'])} s"
                 f"<br><sub>{markdown_cell(item['latency_method'])}</sub>"

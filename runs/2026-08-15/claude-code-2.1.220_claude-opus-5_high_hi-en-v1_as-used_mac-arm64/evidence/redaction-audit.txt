@@ -1,0 +1,44 @@
+Redaction method: deterministic opaque black rectangles on decoded PNG pixels.
+Coordinate convention: inclusive x1,y1 through x2,y2, origin at top-left.
+No image was resized, cropped, blurred, or generatively redrawn.
+
+environment.redacted.png
+  dimensions: 823x757 (unchanged)
+  private_original_sha256: 5ae88c8067881a0861a2e17a6597f1345c6d0f6d6ee1d23965ae4558d34b7dd9
+  public_sha256: 907f27a1fea511eb2dce650d8a46450df29202aed7bd62465e6ea18170dd7418
+  handling: byte-for-byte reuse of the preceding Fable sample's audited public batch evidence
+  public_copy_difference_count: 0
+
+status.redacted.png
+  dimensions: 1829x726 (unchanged)
+  private_original_sha256: 7a6b8aea6852047abfdbd9e6406c8f4ebc04eab3947ef05b3d4651f0b28efd0c
+  public_sha256: df3b134444720b301b546cf77effd11a21ad86c7d7ccf24a3d79b078082deffd
+  rectangles: 293,400-812,433; 293,432-1372,464; 293,492-878,524; 293,522-672,554
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+attempts/r1/response.png
+  dimensions: 567x335 (unchanged)
+  private_original_sha256: 45e06bc9ec063096b792f0ab827722268f118047079a66ff13922e04984b2504
+  public_sha256: 45e06bc9ec063096b792f0ab827722268f118047079a66ff13922e04984b2504
+  decoded_pixel_difference_count: 0
+
+attempts/r2/response.png
+  dimensions: 764x810 (unchanged)
+  private_original_sha256: 9d4912c0346395792fe7113327915a1939d2823510df977214583e47ebbaa4d7
+  public_sha256: c74c3f23f3bf0bccbad51e538552a651597323730405a0627838be6d27e1106e
+  rectangles: 401,61-565,99; 94,241-680,275
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+attempts/r3/response.png
+  dimensions: 748x710 (unchanged)
+  private_original_sha256: 43f4466beefa311fc9224d7386c10192229278480387c13b367abfbe04b0a3d4
+  public_sha256: ff7972bac14749de1fe92301977e8735edb90b66290af4a33ffd28d604babd12
+  rectangles: 0,0-747,7; 392,62-556,100; 85,242-672,276
+  outside_rectangles_rgb_difference_max: 0
+  alpha_channel_different_pixels: 0
+
+The R3 top band covers clipped pixels from content preceding the captured Claude banner; those pixels were not needed as evidence and could not be reliably inspected in the partial line.
+
+Secondary privacy check: OCR on every public PNG produced no match for the private email domain, account name, hostname, absolute home path, or UUID-shaped session identifier. OCR is a heuristic supplement, not a substitute for visual review.

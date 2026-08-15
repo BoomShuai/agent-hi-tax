@@ -6,9 +6,9 @@
 
 [返回项目首页](README.md) | [查看场景目录](runs/README.md) | [阅读贡献与口径规则](CONTRIBUTING.md)
 
-- 场景数：2
+- 场景数：3
 - Agent 产品数：2
-- 有效 attempts：6
+- 有效 attempts：9
 
 ## 阅读规则
 
@@ -23,6 +23,7 @@
 | Agent / 版本 | 模型 · Effort | 订阅 / 路由 | Harness | N | 总输入 | Context total | Output | 延迟 | 证据 / 额度归因 |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
 | [Claude Code 2.1.220](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | claude-fable-5<br><sub>high</sub> | Claude Max<br><sub>官方订阅</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 25,008 (25,008–25,443) | 25,045 (25,045–25,473) | 37 (30–37) | 6 (5–8) s<br><sub>UI 整秒</sub> | A · 公开视觉<br><sub>quota: not_measured</sub> |
+| [Claude Code 2.1.220](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | claude-opus-5<br><sub>high</sub> | Claude Max<br><sub>官方订阅</sub> | as-used · fresh<br><sub>macOS arm64</sub><br><sub>对比受 mode 混杂</sub> | 3 | 24,666 (24,600–24,837) | 24,679 (24,613–24,851) | 13 (13–14) | 5 (4–5) s<br><sub>UI 整秒</sub> | A · 公开视觉<br><sub>quota: not_measured</sub> |
 | [OpenAI Codex CLI 0.147.0](runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-14</sub> | gpt-5.6-sol<br><sub>high</sub> | ChatGPT Pro 20x<br><sub>官方订阅</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 13,950 | 13,964 (13,963–13,964) | 14 (13–14) | 3.561 (3.308–3.657) s<br><sub>事件时间戳</sub> | A · 公开视觉<br><sub>quota: contaminated</sub> |
 
 ## 更新这个页面

@@ -1,0 +1,3 @@
+claude --model opus
+
+R1 set effort to high through the local /effort UI and saved it as the default for new sessions. R2 and R3 inherited that high default.

@@ -1,0 +1,64 @@
+attempt: 2
+status: "valid"
+started_at_utc: "not_exposed"
+assistant_message_at_utc: "2026-08-15T02:43:33.665Z"
+usage_recorded_at_utc: "2026-08-15T02:43:33.665Z"
+response_latency_ms: "not_exposed"
+response_latency_display_seconds: 5
+latency_method: "cli-ui-rounded-seconds"
+
+model_observed: "claude-opus-5"
+effort_observed: "high"
+
+usage:
+  source: "contributor-extracted-local-session-transcript"
+  provider_schema: "anthropic"
+  input_tokens_including_cached: "not_applicable"
+  cached_input_tokens: "not_applicable"
+  non_cached_input_tokens: "not_applicable"
+  cli_total_excluding_cached: "not_applicable"
+  cli_total_source: "not_applicable"
+  cache_write_input_tokens: "not_applicable"
+  model_context_window_event: "not_exposed"
+  input_tokens: 2
+  cache_creation_input_tokens: 24664
+  cache_read_input_tokens: 0
+  total_input_tokens: 24666
+  cache_creation_ephemeral_5m_input_tokens: 0
+  cache_creation_ephemeral_1h_input_tokens: 24664
+  output_tokens: 13
+  reasoning_output_tokens: "not_exposed"
+  context_total_tokens: 24679
+  service_tier: "standard"
+  speed: "standard"
+  iterations: 0
+  iterations_observation: "empty_array"
+  web_search_requests: 0
+  web_fetch_requests: 0
+
+response:
+  file: "response.txt"
+  exact_text_sha256: "ef8462e7862606cf19f6cf6f554445644d1c6516aaf3bae732a1468220d9750e"
+
+activity:
+  tool_calls: 0
+  approvals: 0
+  errors: []
+
+quota:
+  before: "not_measured"
+  after: "not_measured"
+  attribution: "not_measured"
+
+evidence:
+  response_screenshot: "response.png"
+  usage_screenshot: "not_provided"
+  sanitized_events: "events.sanitized.jsonl"
+  field_statuses:
+    prompt_and_response: "verified"
+    usage: "verified"
+    timing: "verified"
+    quota: "not_provided"
+
+deviations:
+  - "The local status command was used before hi; the extracted result contained one logical assistant message."

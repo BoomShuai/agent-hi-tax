@@ -1,0 +1,4 @@
+attempt,status,assistant_message_at_utc,ui_latency_seconds,usage_source,input_tokens,cache_creation_input_tokens,cache_read_input_tokens,total_input_tokens,output_tokens,context_total_tokens,web_search_requests,web_fetch_requests,quota_attribution,response_text_sha256
+r1,valid,2026-08-15T02:39:56.266Z,5,contributor-extracted-local-session-transcript,2,24835,0,24837,14,24851,0,0,not_measured,902a69ee216e9c9c7db7f258d15c3caf73f2393095a10122ecaadee7f1a54365
+r2,valid,2026-08-15T02:43:33.665Z,5,contributor-extracted-local-session-transcript,2,24664,0,24666,13,24679,0,0,not_measured,ef8462e7862606cf19f6cf6f554445644d1c6516aaf3bae732a1468220d9750e
+r3,valid,2026-08-15T02:45:26.800Z,4,contributor-extracted-local-session-transcript,2,24598,0,24600,13,24613,0,0,not_measured,a2e6b63bc03ff02f976dd47e7c9a0574c6bd76e0a4ce5310b7e5108e2c9bacc4
