@@ -34,6 +34,7 @@ MISSING_VALUES = {
 
 ROUTE_LABELS = {
     "first-party-subscription": "官方订阅",
+    "first-party-product": "官方产品",
     "official-api": "官方 API",
     "third-party-gateway": "第三方中转",
     "self-hosted": "自部署",

@@ -1,0 +1,70 @@
+attempt: 2
+status: "valid"
+started_at_utc: "2026-08-15T06:49:36.693Z"
+assistant_message_at_utc: "2026-08-15T06:49:45.163Z"
+usage_recorded_at_utc: "2026-08-15T06:49:45.163Z"
+response_latency_ms: 8470
+response_latency_display_seconds: 8
+latency_method: "workbuddy-jsonl-event-timestamps"
+
+model_requested: "Auto"
+model_observed: "glm-5.2"
+effort_observed: "not_exposed"
+mode_observed: "craft"
+
+usage:
+  source: "workbuddy-providerData.rawUsage-plus-sqlite-crosscheck"
+  provider_schema: "workbuddy"
+  input_tokens_including_cached: 33043
+  cached_input_tokens: 9920
+  non_cached_input_tokens: 23123
+  cli_total_excluding_cached: "not_applicable"
+  cache_write_input_tokens: 0
+  model_context_window_event: "not_exposed"
+  input_tokens: "not_applicable"
+  cache_creation_input_tokens: "not_applicable"
+  cache_read_input_tokens: "not_applicable"
+  total_input_tokens: 33043
+  output_tokens: 436
+  reasoning_output_tokens: 255
+  non_reasoning_output_tokens: 181
+  context_total_tokens: 33479
+  provider_total_tokens: 33479
+  api_calls: 1
+  workbuddy_credit: 4.66
+  credit_unit: "workbuddy_credit"
+  credit_crosscheck: "matched"
+  service_tier: "not_exposed"
+  speed: "not_exposed"
+
+response:
+  file: "response.txt"
+  exact_text_sha256: "50e921a786c3d73d7cd05a23fa93ff4d85b8ab09044981eae45b211dfc7f1ce8"
+  private_exact_text_sha256: "b5ad655353ed140e386c680dc75558fe43a37ceb9f041793fbc1ed2c39c08857"
+  redacted: true
+
+activity:
+  tool_calls: 0
+  web_used: false
+  approvals: 0
+  errors: []
+
+quota:
+  before: "not_measured"
+  after: "not_measured"
+  attribution: "per_attempt_native_credit_verified"
+
+evidence:
+  start_screenshot: "start.png"
+  response_screenshot: "response.png"
+  usage_screenshot: "response.png"
+  sanitized_events: "events.sanitized.jsonl"
+  field_statuses:
+    prompt_and_response: "verified-with-redaction"
+    usage: "verified"
+    timing: "verified"
+    credit: "verified"
+    quota: "not_provided"
+
+deviations:
+  - "The public response text and screenshot replace the injected Git identity with a deterministic redaction; the private exact-text SHA-256 is retained."

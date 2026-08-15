@@ -1,0 +1,25 @@
+Tool: ImageMagick 7.1.2-22
+Method: deterministic, fully opaque black rectangles; no blur, crop, resize, generative editing, or text reconstruction
+
+environment.redacted.png
+- source dimensions: 1230x456
+- public dimensions: 1230x456
+- rectangles, inclusive coordinates: (5,184)-(172,218); (5,423)-(252,455)
+- decoded RGB maximum difference outside rectangles: 0
+- decoded alpha maximum difference across the full image: 0
+
+attempts/r2/response.png
+- source dimensions: 982x499
+- public dimensions: 982x499
+- rectangle, inclusive coordinates: (383,267)-(478,292)
+- decoded RGB maximum difference outside rectangle: 0
+- decoded alpha maximum difference across the full image: 0
+
+Unchanged public images have SHA-256 values identical to their private originals.
+
+OCR privacy scan of the two edited images found none of these private strings:
+- private absolute home path
+- local username and hostname prompt
+- injected Git identity
+
+Manual visual inspection confirmed that all declared sensitive text is fully covered and the remaining model, credit, timing, prompt, response, and workspace evidence is readable.

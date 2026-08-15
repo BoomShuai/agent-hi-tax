@@ -1,0 +1,228 @@
+schema_version: "pilot-0.3"
+protocol_version: "manual-hi-tax-0.3"
+
+scenario:
+  id: "20260815_workbuddy-5.3.13_auto_craft_hi-en-v1_as-used_mac-arm64"
+  captured_from_utc: "2026-08-15T06:45:13.732Z"
+  captured_to_utc: "2026-08-15T06:52:23.391Z"
+  planned_repetitions: 3
+  valid_repetitions: 3
+
+contributor:
+  github_handle: "@keting"
+
+agent:
+  product: "WorkBuddy"
+  vendor: "Tencent"
+  distribution: "first-party"
+  surface: "desktop-ide"
+  version: "5.3.13"
+  build: "5.3.13"
+  executable: "/Applications/WorkBuddy.app"
+
+environment:
+  os: "macOS"
+  os_version: "26.5.2"
+  os_build: "25F84"
+  architecture: "arm64"
+  locale: "not_exposed"
+  timezone: "Asia/Shanghai"
+
+account:
+  auth_channel: "first-party-product-login"
+  subscription_plan: "not_provided"
+  usage_multiplier: "not_provided"
+  billing_mode: "workbuddy-credit"
+  quota_shared_scope: "account"
+  plan_evidence_status: "not_provided"
+
+route:
+  category: "first-party-product"
+  provider: "Tencent WorkBuddy"
+  protocol: "native-auto-router"
+  gateway_public_name: "not_applicable"
+  gateway_public_domain: "not_applicable"
+  upstream_model_claimed: "not_applicable"
+  cache_policy: "automatic-observed"
+  fallback_policy: "automatic; exact routing policy not exposed"
+
+model:
+  requested: "Auto"
+  observed: "glm-5.2 (R1,R2); deepseek-v4-flash (R3)"
+  observation_method: "public response screenshots plus providerData.rawUsage from local WorkBuddy JSONL"
+
+reasoning:
+  effort_requested: "not_exposed"
+  effort_observed: "not_exposed"
+  mode: "craft"
+  service_tier: "not_exposed"
+  speed: "not_exposed"
+
+generation_parameters:
+  temperature: "not_exposed"
+  top_p: "not_exposed"
+  max_output_tokens: "not_exposed"
+  other: {}
+
+harness:
+  context_profile: "as-used"
+  session_state: "fresh"
+  prior_human_chat_turns: 0
+  workspace_type: "empty-directory"
+  environment_context_injected: true
+  instruction_files: "global WorkBuddy identity, memory, and instruction context not exposed"
+  built_in_tools: "available in the product; exact per-request tool schema not exposed"
+  plugins_enabled:
+    - "weixinpay@workbuddy-builtin"
+    - "tencent-docs-plugin@workbuddy-builtin"
+    - "tencent-pptx@workbuddy-builtin"
+    - "sheetagent@workbuddy-builtin"
+    - "tencent-docx@workbuddy-builtin"
+  skills_enabled: "WorkBuddy skill surface available; exact per-request injection not exposed"
+  mcp_servers_enabled: "not_exposed"
+  hooks_enabled:
+    - "no user-configured WorkBuddy hook observed in settings; plugin-internal hooks not exposed"
+  external_observers:
+    - "local read-only WorkBuddy watcher scans JSONL and SQLite after completion and sends a notification without a model call"
+  hook_model_calls_observed: 0
+  hook_model_call_assessment: "one provider message call and zero tool calls in each attempt"
+  network_mode: "WorkBuddy-managed"
+  permission_mode: "fullAccess"
+  ui_scene: "日常办公"
+  native_mode: "craft"
+  filesystem_profile_observed: "use_sandbox_cli=1"
+  settings_sources:
+    - "WorkBuddy user settings"
+    - "WorkBuddy application defaults"
+
+prompt:
+  case_id: "hi-en-v1"
+  file: "prompt.txt"
+  sha256: "8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4"
+  bytes: 2
+  encoding: "UTF-8"
+  language: "en"
+  leading_whitespace: false
+  trailing_whitespace: false
+  submit_method: "manual_gui"
+
+measurement:
+  primary_metric: "input_tokens_including_cached"
+  secondary_metrics:
+    - "context_total_tokens"
+    - "workbuddy_credit"
+    - "actual_routed_model"
+  native_input_definition: "providerData.rawUsage.prompt_tokens; cached_input_tokens is a subset"
+  non_cached_input_definition: "prompt_tokens minus prompt_cache_hit_tokens"
+  context_total_definition: "prompt_tokens plus completion_tokens"
+  reasoning_definition: "completion_thinking_tokens is a subset of completion_tokens"
+  total_input_is_subscription_cost: false
+  latency_method: "WorkBuddy JSONL user and final assistant event timestamps"
+  transcript_extraction: "local read-only watcher parsed the fresh-session JSONL after completion"
+  transcript_deduplication: "deduplicate native calls by private providerData.messageId"
+  credit_crosscheck: "sum rawUsage.credit and compare with matching SQLite session_usage.credit_json entries"
+
+aggregate:
+  actual_models:
+    values: ["glm-5.2", "glm-5.2", "deepseek-v4-flash"]
+    counts:
+      glm-5.2: 2
+      deepseek-v4-flash: 1
+  input_tokens_including_cached:
+    values: [32119, 33043, 33193]
+    min: 32119
+    median: 33043
+    max: 33193
+    mean: 32785
+  cached_input_tokens:
+    values: [9920, 9920, 8960]
+    min: 8960
+    median: 9920
+    max: 9920
+    mean: 9600
+  non_cached_input_tokens:
+    values: [22199, 23123, 24233]
+    min: 22199
+    median: 23123
+    max: 24233
+    mean: 23185
+  output_tokens:
+    values: [382, 436, 631]
+    min: 382
+    median: 436
+    max: 631
+    mean: 483
+  reasoning_output_tokens:
+    values: [281, 255, 469]
+    min: 255
+    median: 281
+    max: 469
+    mean: 335
+  context_total_tokens:
+    values: [32501, 33479, 33824]
+    min: 32501
+    median: 33479
+    max: 33824
+    mean: 33268
+  response_latency_ms:
+    values: [11628, 8470, 7893]
+    min: 7893
+    median: 8470
+    max: 11628
+    mean: 9330.333
+  workbuddy_credit:
+    values: [4.46, 4.66, 0.74]
+    min: 0.74
+    median: 4.46
+    max: 4.66
+    mean: 3.286667
+
+quota:
+  attribution: "per_attempt_native_credit_verified"
+  notes: "Each attempt exposes exact WorkBuddy credit; no account-level balance or subscription percentage delta is attributed."
+
+evidence:
+  package_level: "A"
+  visual_evidence_access: "public"
+  field_statuses:
+    agent_version: "verified"
+    subscription_plan: "not_provided"
+    usage_multiplier: "not_provided"
+    route: "verified"
+    model: "verified"
+    reasoning_effort: "not_exposed"
+    environment: "verified"
+    workspace_and_session: "verified"
+    mcp_plugins_and_hooks: "self_reported"
+  public_files:
+    - "evidence/environment.redacted.png"
+    - "evidence/preflight.txt"
+    - "evidence/harness.txt"
+    - "evidence/private-evidence.md"
+    - "evidence/redaction-audit.txt"
+    - "attempts/r1/start.png"
+    - "attempts/r1/response.png"
+    - "attempts/r2/start.png"
+    - "attempts/r2/response.png"
+    - "attempts/r3/start.png"
+    - "attempts/r3/response.png"
+    - "attempts/r1/events.sanitized.jsonl"
+    - "attempts/r2/events.sanitized.jsonl"
+    - "attempts/r3/events.sanitized.jsonl"
+  withheld_private_evidence: true
+  redactions:
+    - "Environment screenshot uses deterministic opaque rectangles over username, hostname, and home-path prefix."
+    - "R2 response screenshot and public response text redact the Git identity injected by the WorkBuddy harness."
+    - "Decoded RGB pixels outside declared rectangles and all alpha pixels match the private originals exactly."
+    - "Public events omit message IDs, request IDs, session IDs, user IDs, usernames, hostnames, and absolute paths."
+
+protocol:
+  deviations:
+    - "WorkBuddy is a desktop IDE: terminal commands prepared and verified empty directories, while folder selection, mode confirmation, and prompt submission were manual GUI actions."
+    - "The fixed requested model Auto routed R1 and R2 to glm-5.2 and R3 to deepseek-v4-flash; actual model is therefore an attempt result, not a fixed underlying-model scenario variable."
+    - "The UI label 日常办公 and native SQLite mode craft describe different product layers and are both retained."
+    - "R2 exposed the contributor's Git identity and R3 interpreted the workspace basename; public evidence redacts the identity while documenting both as global-context observations."
+    - "Subscription plan and account-level quota were not captured; exact per-attempt WorkBuddy credit remains verified."
+    - "The external watcher is an observer, not a WorkBuddy hook; it reads completed records and makes no model call."
+    - "The watcher cross-checked SQLite immediately after each completion; later GUI workspace switching can soft-delete the prior session and remove its session_usage row while leaving JSONL intact."
+  notes: "This package measures the WorkBuddy Auto routing harness, not a controlled single-model benchmark."

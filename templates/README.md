@@ -15,5 +15,6 @@
 - [Codex CLI：OpenAI/Codex cached input 是 input 的子集](../runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/manifest.yaml)
 - [Claude Code Fable：Anthropic 三个 input bucket 相加](../runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/manifest.yaml)
 - [Claude Code Opus：记录跨样板 mode 混杂](../runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/manifest.yaml)
+- [WorkBuddy Auto：缓存为 input 子集，实际路由模型是逐次结果](../runs/2026-08-15/workbuddy-5.3.13_auto_craft_hi-en-v1_as-used_mac-arm64/manifest.yaml)
 
-模板仍使用 `pilot-0.3`。新增的是可选记录字段和填写说明，没有改写三个既有样板的原始口径。
+模板仍使用 `pilot-0.3`。新增的是可选记录字段和填写说明，没有改写既有样板的原始口径。

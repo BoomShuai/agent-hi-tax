@@ -105,6 +105,24 @@ Claude 的三个 input 字段是相加关系，与首个 Codex 样板中 cached 
 
 查看[完整 Opus 样板和公开脱敏证据](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)。
 
+## 第四个标准样板：WorkBuddy Auto 路由
+
+第四个样板使用 WorkBuddy 5.3.13 桌面 IDE，固定选择 `Auto / 日常办公 / 允许完全访问`，在三个独立空目录和 fresh session 中人工提交 `hi`。
+
+| 指标 | R1 | R2 | R3 |
+| --- | ---: | ---: | ---: |
+| 实际模型 | GLM-5.2 | GLM-5.2 | DeepSeek-V4-Flash |
+| Input（含缓存） | 32,119 | 33,043 | 33,193 |
+| Cached input | 9,920 | 9,920 | 8,960 |
+| Output | 382 | 436 | 631 |
+| Context total | 32,501 | 33,479 | 33,824 |
+| WorkBuddy 积分 | 4.46 | 4.66 | 0.74 |
+| 事件耗时 | 11.628 秒 | 8.470 秒 | 7.893 秒 |
+
+它带来了两条新的方法教训：第一，固定选择 `Auto` 时，requested model 是场景变量，实际路由模型是逐次结果；第二，空目录并不等于空 Harness。R2 仍读到了全局 Git identity，R3 还把工作区 basename 当成了任务语义。公开证据已确定性脱敏。
+
+查看[完整 WorkBuddy 样板、积分交叉核验和公开视觉证据](runs/2026-08-15/workbuddy-5.3.13_auto_craft_hi-en-v1_as-used_mac-arm64/README.md)。
+
 ## 一条结果如何确定身份
 
 一个测试场景由下面这组变量共同确定：
@@ -163,7 +181,7 @@ Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过
 
 ## 当前状态
 
-项目目前处于人工试运行阶段。维护者已经按照“外部贡献者”的方式完成三个样板，并继续用真实过程检查：
+项目目前处于人工试运行阶段。维护者已经按照“外部贡献者”的方式完成四个样板，并继续用真实过程检查：
 
 - 场景变量是否足够；
 - 截图和日志能否对应到同一次 run；
@@ -178,8 +196,9 @@ Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过
 - [x] 第一个 `hi-en-v1` 三次重复样板
 - [x] 第二个不同 Agent 样板：Claude Code / Fable 5 / high
 - [x] 第三个 Claude Code / Opus 5 / high 样板及 mode 混杂审计
+- [x] 第四个 WorkBuddy / Auto / craft 样板及自动路由、积分和全局上下文审计
 - [x] 根据首个样板修订 protocol、证据分层和 token 口径
-- [x] 根据第二、第三个样板增加 Codex／Claude 采集 adapter、Anthropic token 口径与 comparison 字段
+- [x] 根据第二至第四个样板增加 Codex／Claude／WorkBuddy 采集 adapter、厂商原生 token 口径、自动路由与 comparison 字段
 - [ ] 机器可校验的正式 schema
 - [x] 首版包结构与基础校验脚本
 - [x] 自动生成的 Hi Tax Index 与 Pull Request 一致性检查
@@ -212,7 +231,7 @@ docs/                 方法说明和流程复盘
 如果你希望贡献一次测试：
 
 1. 阅读[贡献指南](CONTRIBUTING.md)；
-2. 选择[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)或最接近的通用采集路径；
+2. 选择[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)、[WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)或最接近的通用采集路径；
 3. 选择一个现有场景进行独立复测，或提出一个新组合；
 4. 在执行前声明场景；相同设定至少顺序执行 3 次有效独立运行；
 5. 按规范保存 `manifest.yaml`、精确输入、回复、截图和可用的机器日志；

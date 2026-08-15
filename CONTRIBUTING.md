@@ -11,7 +11,7 @@ Agent Hi Tax 是一个轻松但尽量可复核的观察项目。它不是模型�
 第一次参与时，按下面顺序即可：
 
 1. Fork 并 clone 本仓库，为一个场景新建一个分支。
-2. 选择最接近的采集适配器：[Codex CLI](docs/adapters/codex-cli.zh-CN.md)或[Claude Code](docs/adapters/claude-code.zh-CN.md)。其他 Agent 先按本页通用语义采集，并在 PR 中说明产品差异。
+2. 选择最接近的采集适配器：[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)或[WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)。其他 Agent 先按本页通用语义采集，并在 PR 中说明产品差异。
 3. 先固定场景和 launch command，再顺序执行至少 3 次 fresh attempt；不要边测边改模型、effort、权限模式或插件状态。
 4. 原始截图和原始 session/transcript 先留在 Git 仓库外；只有脱敏副本和最小机器事件可以进入 PR。
 5. 复制[场景模板](templates/scenario-manifest.yaml)、[单次模板](templates/attempt-result.yaml)，并参考与自己产品最接近的[三个完整样板](runs/README.md)。
@@ -56,6 +56,8 @@ Agent Hi Tax 是一个轻松但尽量可复核的观察项目。它不是模型�
 - 开关某个 skill、MCP、plugin 或会调用模型的 hook。
 
 自动缓存命中通常是运行结果，不是贡献者可控的场景变量。只要缓存策略没有人为改变，应把每次命中量分别记录，而不是因为命中量不同就拆场景。
+
+自动模型路由采用相同原则：当贡献者固定选择产品的 `Auto`，requested model `Auto` 是场景变量，实际路由模型是逐次结果；三次路由到不同模型时仍属于同一个 Auto 场景。贡献者必须逐次记录 actual model，并避免把积分或 token 差异解释成同一底层模型的波动。显式固定具体模型时，模型变化才需要拆场景或标记为执行错误。
 
 ## 三种 harness profile
 
@@ -168,7 +170,7 @@ Windows 或其他 Agent 使用等价的原生命令。公开转录时把 home �
 
 MCP 即使没有实际调用，也可能因为工具定义进入上下文而影响 input tokens，因此要记录启动状态。`AGENTS.md`、skills、plugins 和其他规则同理。
 
-不同 Agent 的具体命令见[Codex CLI 采集适配器](docs/adapters/codex-cli.zh-CN.md)和[Claude Code 采集适配器](docs/adapters/claude-code.zh-CN.md)。适配器只标准化采集动作，不要求贡献者为了测试关闭已有的代理、sandbox 或账号安全措施；这些设置属于场景，保持不变并如实记录即可。
+不同 Agent 的具体命令见[Codex CLI 采集适配器](docs/adapters/codex-cli.zh-CN.md)、[Claude Code 采集适配器](docs/adapters/claude-code.zh-CN.md)和[WorkBuddy Desktop 采集适配器](docs/adapters/workbuddy-desktop.zh-CN.md)。适配器只标准化采集动作，不要求贡献者为了测试关闭已有的代理、sandbox 或账号安全措施；这些设置属于场景，保持不变并如实记录即可。
 
 ### 4. 顺序执行至少三次
 
@@ -194,6 +196,7 @@ MCP 即使没有实际调用，也可能因为工具定义进入上下文而影�
 - [Codex CLI 0.147.0 / GPT-5.6 Sol / high](runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)
 - [Claude Code 2.1.220 / Fable 5 / high](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)
 - [Claude Code 2.1.220 / Opus 5 / high](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)
+- [WorkBuddy 5.3.13 / Auto / craft](runs/2026-08-15/workbuddy-5.3.13_auto_craft_hi-en-v1_as-used_mac-arm64/README.md)
 
 如果参照样板与当前产品版本不一致，记录差异，不要为了“看起来一致”而修改原生字段含义。
 

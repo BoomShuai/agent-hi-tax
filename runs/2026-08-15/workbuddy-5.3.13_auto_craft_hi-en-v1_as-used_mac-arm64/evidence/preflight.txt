@@ -1,0 +1,15 @@
+WorkBuddy version: 5.3.13
+ProductName: macOS
+ProductVersion: 26.5.2
+BuildVersion: 25F84
+Architecture: arm64
+Captured at: 2026-08-15T06:38:42Z
+Working directory: ~/agent-hi-tax-lab/20260815T063842Z_workbuddy-5.3.13_auto-craft-fullaccess-r1
+Git repository: no
+Top-level workspace entries before launch: 0
+enabled_plugin=weixinpay@workbuddy-builtin
+enabled_plugin=tencent-docs-plugin@workbuddy-builtin
+enabled_plugin=tencent-pptx@workbuddy-builtin
+enabled_plugin=sheetagent@workbuddy-builtin
+enabled_plugin=tencent-docx@workbuddy-builtin
+workbuddy_watcher=configured
