@@ -1,5 +1,5 @@
-schema_version: "pilot-0.2"
-protocol_version: "manual-hi-tax-0.2"
+schema_version: "pilot-0.3"
+protocol_version: "manual-hi-tax-0.3"
 
 scenario:
   id: "<date>_<agent>_<model>_<effort>_<case-id>_<profile>_<platform>"
@@ -46,13 +46,14 @@ route:
 model:
   requested: "<exact selector>"
   observed: "<event/UI value or not_exposed>"
-  observation_method: "ui-status|cli-status|event-log|provider-receipt|not_exposed"
+  observation_method: "ui-status|cli-status|event-log|local-session-transcript|provider-receipt|not_exposed"
 
 reasoning:
   effort_requested: "<native label or not_exposed>"
   effort_observed: "<native label or not_exposed>"
   mode: "<native mode or not_exposed>"
   service_tier: "<native label or not_exposed>"
+  speed: "<native label or not_exposed>"
 
 generation_parameters:
   temperature: "<value or not_exposed>"
@@ -77,6 +78,7 @@ harness:
   network_mode: "enabled|disabled|restricted|not_exposed"
   permission_mode: "<native label or not_exposed>"
   filesystem_profile_observed: "<native label or not_exposed>"
+  settings_sources: []
 
 prompt:
   case_id: "hi-en-v1"
@@ -94,6 +96,7 @@ quota:
 
 evidence:
   package_level: "A|B|C"
+  visual_evidence_access: "public|private_evidence|not_provided"
   field_statuses:
     agent_version: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
     subscription_plan: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"

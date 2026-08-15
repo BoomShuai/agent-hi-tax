@@ -106,6 +106,26 @@ for attempt_dir in attempts/*; do
         fi
         ;;
     esac
+
+    anthropic_input=$(awk '$1 == "input_tokens:" {print $2; exit}' "$result_file")
+    cache_creation=$(awk '$1 == "cache_creation_input_tokens:" {print $2; exit}' "$result_file")
+    cache_read=$(awk '$1 == "cache_read_input_tokens:" {print $2; exit}' "$result_file")
+    total_input=$(awk '$1 == "total_input_tokens:" {print $2; exit}' "$result_file")
+
+    if [ -n "$anthropic_input" ] && [ -n "$cache_creation" ] && \
+       [ -n "$cache_read" ] && [ -n "$output_tokens" ] && \
+       [ -n "$total_input" ] && [ -n "$context_total" ]; then
+      case "$anthropic_input:$cache_creation:$cache_read:$output_tokens:$total_input:$context_total" in
+        *[!0-9:]*) ;;
+        *)
+          if [ "$total_input" -ne $((anthropic_input + cache_creation + cache_read)) ] || \
+             [ "$context_total" -ne $((total_input + output_tokens)) ]; then
+            echo "Anthropic-style token arithmetic mismatch: $result_file" >&2
+            exit 1
+          fi
+          ;;
+      esac
+    fi
   fi
 
   if [ -f "$attempt_dir/events.sanitized.jsonl" ] && command -v jq >/dev/null 2>&1; then
@@ -126,7 +146,7 @@ fi
 
 check_hashes
 
-privacy_pattern='(/Users/[^/<[:space:]]+|[A-Za-z]:\\Users\\|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|Bearer[[:space:]]+[A-Za-z0-9._-]+|sk-[A-Za-z0-9_-]{12,}|codex[[:space:]]+resume|01a[0-9a-f-]{30,})'
+privacy_pattern='(/Users/[^/<[:space:]]+|[A-Za-z]:\\Users\\|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|Bearer[[:space:]]+[A-Za-z0-9._-]+|sk-[A-Za-z0-9_-]{12,}|codex[[:space:]]+resume|claude[[:space:]]+(--resume|-r)|01a[0-9a-f-]{30,}|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})'
 if command -v rg >/dev/null 2>&1; then
   if rg -n --glob '*.md' --glob '*.yaml' --glob '*.jsonl' --glob '*.csv' --glob '*.txt' "$privacy_pattern" .; then
     echo "possible private path, email, credential, or session identifier in public text" >&2

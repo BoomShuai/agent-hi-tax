@@ -80,6 +80,8 @@ Enter/Return 只负责提交，不属于 prompt。不要大写、补标点或加
 - **Level B — 视觉证据：** 有足够截图或连续录屏，但产品没有可用的机器记录。
 - **Level C — 自报数据：** 缺少可以公开复核的核心证据，可保留为待复测观察，但不进入“已验证字段”的比较。
 
+Level A 的视觉证据可以公开，也可以由维护者私下核对后只发布哈希。私有视觉证据必须设置 `visual_evidence_access: private_evidence`，并逐字段使用 `private_evidence`；它仍说明机器记录与视觉原件同时存在，但公开可复核性弱于发布脱敏图，哈希本身也不是公开证明。
+
 ### 字段级状态
 
 包级等级不能掩盖单个字段的缺口。对关键字段分别使用：
@@ -201,6 +203,19 @@ Codex CLI 0.147.0 的首个样板使用以下字段：
 - `cli_total_excluding_cached`：该版本退出界面的口径，即非缓存 input 加 output。
 
 不要把 cached input 再加到 `input_tokens_including_cached` 上，否则会重复计算。也不要把 `cli_total_excluding_cached`、API 标价或订阅百分比中的任何一个称为“真实成本”，除非产品公开了精确换算关系。
+
+Claude Code 2.1.220 的第二个样板使用 Anthropic 原生字段：
+
+- `input_tokens`：原生普通输入桶；
+- `cache_creation_input_tokens`：本次创建缓存的输入桶；
+- `cache_read_input_tokens`：本次读取缓存的输入桶；
+- `total_input_tokens`：以上三项相加的派生总输入；
+- `output_tokens`：原生输出；
+- `context_total_tokens`：派生总输入再加 output。
+
+这三个 Anthropic 输入桶是相加关系，不能把 cache creation/read 当作 `input_tokens` 的子集。Anthropic 的公开 usage 说明也明确用三项之和计算总输入，参见 [Anthropic 官方定价与 usage 字段说明](https://docs.anthropic.com/en/docs/about-claude/pricing)。
+
+因此跨 Agent 数据层采用“原生字段 + 明确派生公式”，不采用一个名为 `total` 的无来源通用字段。某产品不适用的厂商字段写 `not_applicable`，没有暴露的字段写 `not_exposed`。
 
 额度、积分或余额还要记录：原始显示值、单位、重置周期、观察时间和共享范围。若同一账户、API project、团队或中转站余额还有其他活动，使用：
 

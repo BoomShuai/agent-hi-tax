@@ -1,0 +1,184 @@
+schema_version: "pilot-0.3"
+protocol_version: "manual-hi-tax-0.3"
+
+scenario:
+  id: "20260815_claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64"
+  captured_from_utc: "2026-08-15T00:59:51.657Z"
+  captured_to_utc: "2026-08-15T01:30:16.011Z"
+  planned_repetitions: 3
+  valid_repetitions: 3
+
+contributor:
+  github_handle: "@keting"
+
+agent:
+  product: "Claude Code"
+  vendor: "Anthropic"
+  distribution: "first-party"
+  surface: "cli"
+  version: "2.1.220"
+  build: "not_exposed"
+  executable: "~/.local/bin/claude"
+
+environment:
+  os: "macOS"
+  os_version: "26.5.2"
+  os_build: "25F84"
+  architecture: "arm64"
+  locale: "not_exposed"
+  timezone: "America/New_York"
+
+account:
+  auth_channel: "subscription-login"
+  subscription_plan: "Claude Max"
+  usage_multiplier: "not_provided"
+  billing_mode: "included-quota"
+  quota_shared_scope: "account"
+  plan_evidence_status: "verified"
+
+route:
+  category: "first-party-subscription"
+  provider: "Anthropic"
+  protocol: "native"
+  gateway_public_name: "not_applicable"
+  gateway_public_domain: "not_applicable"
+  upstream_model_claimed: "not_applicable"
+  cache_policy: "automatic-observed"
+  fallback_policy: "not_exposed"
+
+model:
+  requested: "claude-fable-5"
+  observed: "claude-fable-5"
+  observation_method: "local-session-transcript"
+
+reasoning:
+  effort_requested: "high"
+  effort_observed: "high"
+  mode: "not_exposed"
+  service_tier: "standard"
+  speed: "standard"
+
+generation_parameters:
+  temperature: "not_exposed"
+  top_p: "not_exposed"
+  max_output_tokens: "not_exposed"
+  other: {}
+
+harness:
+  context_profile: "as-used"
+  session_state: "fresh"
+  prior_human_chat_turns: 0
+  workspace_type: "empty-directory"
+  environment_context_injected: true
+  instruction_files: "user settings loaded; exact injected instruction set not exposed"
+  built_in_tools: "not_exposed"
+  plugins_enabled: "plugins present; exact active set not captured"
+  skills_enabled: "not_exposed"
+  mcp_servers_enabled: "3 connected; names not captured"
+  hooks_enabled:
+    - "user-configured local hooks present"
+  hook_model_calls_observed: 0
+  hook_model_call_assessment: "one logical assistant message in each transcript, plus local hook configuration review"
+  network_mode: "restricted through a wrapper-enforced proxy"
+  permission_mode: "bypass permissions on"
+  filesystem_profile_observed: "sandbox configured; exact effective profile not exposed"
+  settings_sources:
+    - "user settings"
+
+prompt:
+  case_id: "hi-en-v1"
+  file: "prompt.txt"
+  sha256: "8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4"
+  bytes: 2
+  encoding: "UTF-8"
+  language: "en"
+  leading_whitespace: false
+  trailing_whitespace: false
+  submit_method: "typed"
+
+measurement:
+  primary_metric: "total_input_tokens"
+  secondary_metric: "context_total_tokens"
+  native_input_definition: "Anthropic input_tokens excluding separately reported cache creation and cache read buckets"
+  total_input_definition: "input_tokens plus cache_creation_input_tokens plus cache_read_input_tokens"
+  context_total_definition: "total_input_tokens plus output_tokens"
+  total_input_is_subscription_cost: false
+  latency_method: "Claude Code UI rounded whole-second display"
+  transcript_deduplication: "group assistant records by private message.id and retain the latest timestamp"
+
+aggregate:
+  input_tokens:
+    values: [2, 2, 2]
+    min: 2
+    median: 2
+    max: 2
+  cache_creation_input_tokens:
+    values: [25441, 25006, 25006]
+    min: 25006
+    median: 25006
+    max: 25441
+    mean: 25151
+  cache_read_input_tokens:
+    values: [0, 0, 0]
+    min: 0
+    median: 0
+    max: 0
+  total_input_tokens:
+    values: [25443, 25008, 25008]
+    min: 25008
+    median: 25008
+    max: 25443
+    mean: 25153
+  output_tokens:
+    values: [30, 37, 37]
+    min: 30
+    median: 37
+    max: 37
+  context_total_tokens:
+    values: [25473, 25045, 25045]
+    min: 25045
+    median: 25045
+    max: 25473
+  response_latency_display_seconds:
+    values: [5, 8, 6]
+    min: 5
+    median: 6
+    max: 8
+
+quota:
+  attribution: "not_measured"
+  notes: "No subscription percentage or rolling-window delta is attributed to these attempts."
+
+evidence:
+  package_level: "A"
+  visual_evidence_access: "private_evidence"
+  field_statuses:
+    agent_version: "verified"
+    subscription_plan: "verified"
+    usage_multiplier: "not_provided"
+    route: "private_evidence"
+    model: "verified"
+    reasoning_effort: "verified"
+    environment: "private_evidence"
+    workspace_and_session: "private_evidence"
+    mcp_plugins_and_hooks: "self_reported"
+  public_files:
+    - "evidence/preflight.txt"
+    - "evidence/harness.txt"
+    - "evidence/private-evidence.md"
+    - "attempts/r1/events.sanitized.jsonl"
+    - "attempts/r2/events.sanitized.jsonl"
+    - "attempts/r3/events.sanitized.jsonl"
+  withheld_private_evidence: true
+  redactions:
+    - "Raw screenshots are withheld because the same frames contain account, organization, local path, or session identifiers."
+    - "Public transcripts omit message IDs, session IDs, account fields, hostnames, usernames, and absolute paths."
+
+protocol:
+  deviations:
+    - "R1 included local model, effort, and status slash commands before hi; transcript inspection found no additional model request."
+    - "R2 and R3 used only the local status command before hi."
+    - "Exact Claude Max usage multiplier was not captured; only the Max plan is verified."
+    - "Latency is the rounded whole-second UI display, not an event-timestamp measurement."
+    - "Original screenshots are private; only hashes and sanitized transcriptions are public."
+  notes: "Usage was extracted after exit from the local transcript. The in-session usage command was deliberately avoided to reduce observer effects."

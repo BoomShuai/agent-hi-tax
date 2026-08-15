@@ -75,6 +75,26 @@ Agent Hi Tax 是一个由社区共同维护、以证据为基础的 AI Agent 消
 
 查看[完整样板、原始口径和公开证据](runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)，以及[首轮实测带来的流程修订](docs/first-sample-lessons.zh-CN.md)。
 
+## 第二个标准样板
+
+第二个样板使用官方 Claude Code 2.1.220、`claude-fable-5`、`high`、Claude Max、macOS arm64 和保留真实用户配置的 `as-used` harness，同样顺序执行了 3 次 fresh-session `hi`。
+
+| 指标 | R1 | R2 | R3 |
+| --- | ---: | ---: | ---: |
+| 原生普通 input | 2 | 2 | 2 |
+| Cache creation input | 25,441 | 25,006 | 25,006 |
+| Cache read input | 0 | 0 | 0 |
+| 派生总输入 | 25,443 | 25,008 | 25,008 |
+| 原生 output | 30 | 37 | 37 |
+| 上下文总量 | 25,473 | 25,045 | 25,045 |
+| UI 整秒耗时 | 5 秒 | 8 秒 | 6 秒 |
+
+三次可见回复完全一致：`Hi! What can I help you with today?`。最醒目的“Hi Tax”是：两个可见字符对应的普通 input 只有 2 tokens，但首次请求同时创建了约 25K 的 1 小时 cache。
+
+Claude 的三个 input 字段是相加关系，与首个 Codex 样板中 cached input 属于 input 子集的关系不同。项目因此升级了 attempt 模板和校验器，不再试图用一个厂商的 total 解释另一个厂商。
+
+查看[完整 Claude Code 样板](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)，以及[第二轮流程修订](docs/second-sample-lessons.zh-CN.md)。
+
 ## 一条结果如何确定身份
 
 一个测试场景由下面这组变量共同确定：
@@ -115,6 +135,8 @@ trailing_whitespace: false
 - **Level B：视觉证据。** 包含足以连接配置、输入和回复的截图或连续录屏，但没有可公开的机器记录。
 - **Level C：自报数据。** 可以作为讨论线索或待复测场景，但在补充证据以前不进入有证据支持的比较数据集。
 
+Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过、只登记哈希的私有原图。后一种必须另标 `visual_evidence_access: private_evidence`，其公开可复核性弱于公开脱敏图，原图哈希也不能被描述成公开证明。
+
 证据等级不是 PR 门槛。能获得的证据应尽量提供；产品没有暴露、贡献者没有取得或公开会泄露隐私时，保留记录并标注 `not_exposed`、`not_provided`、`private_evidence` 或 `self_reported`。缺图不会让一次真实贡献自动失效，但会降低对应字段能够支持的结论强度。
 
 无论使用哪一级，都遵守以下原则：
@@ -144,8 +166,9 @@ trailing_whitespace: false
 
 - [x] 中文版贡献协议与人工试运行 manifest
 - [x] 第一个 `hi-en-v1` 三次重复样板
-- [ ] 第二个不同 Agent 或不同路由的样板 run
+- [x] 第二个不同 Agent 样板：Claude Code / Fable 5 / high
 - [x] 根据首个样板修订 protocol、证据分层和 token 口径
+- [x] 根据第二个样板增加 Agent adapter 与 Anthropic token 口径
 - [ ] 机器可校验的正式 schema
 - [x] 首版包结构与基础校验脚本
 - [ ] 自动采集与确定性脱敏辅助工具

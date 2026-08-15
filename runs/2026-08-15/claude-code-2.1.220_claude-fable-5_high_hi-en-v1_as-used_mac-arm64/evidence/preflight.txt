@@ -1,0 +1,16 @@
+Sanitized scenario preflight
+
+executable: ~/.local/bin/claude
+Claude Code version: 2.1.220
+authentication method: claude.ai
+API provider: firstParty
+subscription type: max
+operating system: macOS 26.5.2
+operating system build: 25F84
+architecture: arm64
+captured at UTC: 2026-08-15T00:55:32Z
+
+Removed from this public transcription:
+- local user and host names
+- account email and organization identifiers
+- absolute home path

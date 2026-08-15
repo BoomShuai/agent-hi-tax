@@ -1,0 +1,22 @@
+Sanitized harness observation
+
+context profile: as-used
+workspace: one fresh, empty, non-Git directory per attempt
+session: fresh for every attempt
+model requested: claude-fable-5
+model observed: claude-fable-5
+effort requested: high
+effort observed in UI: high
+login surface: Claude Max account
+settings source: user settings
+MCP status: 3 connected; names not captured
+plugins: present; exact active set not captured
+hooks: local user hooks present
+permission UI: bypass permissions on
+network: restricted through an existing wrapper-enforced proxy
+safety preflight summary: 81 OK, 6 WARN, 0 FAIL, 5 INFO
+
+The proxy endpoint, route, account fields, local paths, and session identifiers
+are intentionally omitted. The settings, MCP, plugins, hooks, sandbox, and
+proxy were retained because this scenario measures the contributor's as-used
+harness rather than a clean baseline.

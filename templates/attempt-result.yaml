@@ -4,23 +4,44 @@ started_at_utc: "YYYY-MM-DDTHH:MM:SS.sssZ"
 assistant_message_at_utc: "YYYY-MM-DDTHH:MM:SS.sssZ"
 usage_recorded_at_utc: "YYYY-MM-DDTHH:MM:SS.sssZ"
 response_latency_ms: "<integer or not_exposed>"
-latency_method: "assistant-message-event|provider-timestamps|screen-recording|manual-stopwatch|not_exposed"
+response_latency_display_seconds: "<integer or not_exposed>"
+latency_method: "assistant-message-event|provider-timestamps|cli-ui-rounded-seconds|screen-recording|manual-stopwatch|not_exposed"
 
 model_observed: "<model or not_exposed>"
 effort_observed: "<native label or not_exposed>"
 
 usage:
-  source: "event-log|exit-ui|event-log-and-exit-ui|provider-dashboard|not_exposed"
+  source: "event-log|local-session-transcript|exit-ui|event-log-and-exit-ui|provider-dashboard|not_exposed"
+  provider_schema: "openai|anthropic|other|not_exposed"
+
+  # Codex/OpenAI-style fields. Use not_applicable when the provider exposes
+  # cache creation/read as separate additive buckets instead.
   input_tokens_including_cached: "<integer or not_exposed>"
   cached_input_tokens: "<integer or not_exposed>"
   non_cached_input_tokens: "<integer or not_exposed>"
-  output_tokens: "<integer or not_exposed>"
-  reasoning_output_tokens: "<integer or not_exposed>"
-  context_total_tokens: "<integer or not_exposed>"
   cli_total_excluding_cached: "<integer or not_exposed>"
   cli_total_source: "<source or not_exposed>"
   cache_write_input_tokens: "<integer or not_exposed>"
   model_context_window_event: "<integer or not_exposed>"
+
+  # Anthropic-style native fields. These are additive input buckets; do not
+  # reinterpret cache creation/read as a subset of input_tokens.
+  input_tokens: "<integer or not_applicable>"
+  cache_creation_input_tokens: "<integer or not_applicable>"
+  cache_read_input_tokens: "<integer or not_applicable>"
+  total_input_tokens: "<integer or not_applicable>"
+  cache_creation_ephemeral_5m_input_tokens: "<integer or not_exposed>"
+  cache_creation_ephemeral_1h_input_tokens: "<integer or not_exposed>"
+
+  # Cross-provider output and explicitly defined derived context footprint.
+  output_tokens: "<integer or not_exposed>"
+  reasoning_output_tokens: "<integer or not_exposed>"
+  context_total_tokens: "<integer or not_exposed>"
+  service_tier: "<native label or not_exposed>"
+  speed: "<native label or not_exposed>"
+  iterations: "<integer or not_exposed>"
+  web_search_requests: "<integer or not_exposed>"
+  web_fetch_requests: "<integer or not_exposed>"
 
 response:
   file: "response.txt"
