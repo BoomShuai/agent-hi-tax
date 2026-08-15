@@ -10,7 +10,7 @@
 
 > 在一个明确、可复核的环境里，发出一句完全相同的输入，到底发生了什么，又消耗了什么？
 
-[查看 Hi Tax Index：所有 Agent 场景的汇总对比](RESULTS.md)
+[查看 Hi Tax Index：所有 Agent 场景的汇总对比](RESULTS.md) | [按最短路径参与贡献](CONTRIBUTING.md#外部贡献者最短路径)
 
 ## 这是什么
 
@@ -97,6 +97,14 @@ Claude 的三个 input 字段是相加关系，与首个 Codex 样板中 cached 
 
 查看[完整 Claude Code 样板](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)，以及[第二轮流程修订](docs/second-sample-lessons.zh-CN.md)。
 
+## 第三个标准样板与最新流程教训
+
+第三个样板继续使用 Claude Code 2.1.220 和 `high` effort，但模型改为 `claude-opus-5`。三次派生总输入为 24,837、24,666、24,600 tokens，回复出现三个短文本变体。
+
+这个样板最重要的贡献不是模型间差值，而是截图发现了一个混杂变量：Fable 样板 footer 为 `bypass permissions on`，Opus 样板为 `manual mode on`。因此两者 342 tokens 的总输入中位数差异被明确标成 `mode-confounded`，不能归因于模型。贡献流程据此增加了 permission/footer mode 的三次一致性检查，以及 manifest 的 comparison/confounder 字段。
+
+查看[完整 Opus 样板和公开脱敏证据](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)。
+
 ## 一条结果如何确定身份
 
 一个测试场景由下面这组变量共同确定：
@@ -155,7 +163,7 @@ Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过
 
 ## 当前状态
 
-项目目前处于人工试运行阶段。第一步不是批量收集数字，而是由维护者先完全按照“外部贡献者”的方式制作一至两个样板，用真实过程检查：
+项目目前处于人工试运行阶段。维护者已经按照“外部贡献者”的方式完成三个样板，并继续用真实过程检查：
 
 - 场景变量是否足够；
 - 截图和日志能否对应到同一次 run；
@@ -169,11 +177,13 @@ Level A 的视觉证据可以是公开脱敏图，也可以是维护者核对过
 - [x] 中文版贡献协议与人工试运行 manifest
 - [x] 第一个 `hi-en-v1` 三次重复样板
 - [x] 第二个不同 Agent 样板：Claude Code / Fable 5 / high
+- [x] 第三个 Claude Code / Opus 5 / high 样板及 mode 混杂审计
 - [x] 根据首个样板修订 protocol、证据分层和 token 口径
-- [x] 根据第二个样板增加 Agent adapter 与 Anthropic token 口径
+- [x] 根据第二、第三个样板增加 Codex／Claude 采集 adapter、Anthropic token 口径与 comparison 字段
 - [ ] 机器可校验的正式 schema
 - [x] 首版包结构与基础校验脚本
 - [x] 自动生成的 Hi Tax Index 与 Pull Request 一致性检查
+- [x] 外部贡献者最短路径、模板说明与 Pull Request 模板
 - [ ] 自动采集与确定性脱敏辅助工具
 - [ ] 待测场景矩阵和 issue 模板
 - [ ] 图表与交互式可视化页面
@@ -192,7 +202,7 @@ templates/            场景与单次 attempt 模板
 runs/                 已完成脱敏和核对的公开场景包
 scripts/              汇总生成、包完整性、哈希和隐私线索检查
 docs/                 方法说明和流程复盘
-.github/workflows/    Pull Request 自动一致性检查
+.github/               Pull Request 模板与自动一致性检查
 ```
 
 正式 schema、自动采集和交互式可视化会在更多 Agent 样板完成后再定型，避免用第一家产品的字段绑死整个项目。
@@ -202,11 +212,12 @@ docs/                 方法说明和流程复盘
 如果你希望贡献一次测试：
 
 1. 阅读[贡献指南](CONTRIBUTING.md)；
-2. 选择一个现有场景进行独立复测，或提出一个新组合；
-3. 在执行前声明场景；相同设定至少顺序执行 3 次有效独立运行；
-4. 按规范保存 `manifest.yaml`、精确输入、回复、截图和可用的机器日志；
-5. 完成脱敏、哈希与检查清单；
-6. 一个场景（包含全部重复运行）提交一个 Pull Request。
+2. 选择[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)或最接近的通用采集路径；
+3. 选择一个现有场景进行独立复测，或提出一个新组合；
+4. 在执行前声明场景；相同设定至少顺序执行 3 次有效独立运行；
+5. 按规范保存 `manifest.yaml`、精确输入、回复、截图和可用的机器日志；
+6. 完成脱敏、哈希与检查清单；
+7. 一个场景（包含全部重复运行）提交一个 Pull Request。
 
 重复测试是受欢迎的。不同时间、不同版本、不同订阅和不同真实环境的独立观察，正是这个项目长期有意思的地方。
 

@@ -98,6 +98,8 @@ Claude 欢迎页同时展示模型、effort、订阅、组织和邮箱；`/statu
 
 `scenario protocol → agent adapter → private evidence → sanitizer → public package → validator`
 
+目前已先落地可由外部贡献者执行的[Codex CLI 手动采集适配器](adapters/codex-cli.zh-CN.md)和[Claude Code 手动采集适配器](adapters/claude-code.zh-CN.md)。它们固定采集语义、命令顺序、去重和隐私边界；自动建包与确定性脱敏仍是后续工作。
+
 Claude adapter 可以自动完成：
 
 1. 采集版本与经过允许的环境字段；

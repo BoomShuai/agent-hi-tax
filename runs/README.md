@@ -10,5 +10,6 @@
 
 - [Codex CLI 0.147.0 / GPT-5.6 Sol / high / hi-en-v1 / macOS arm64](2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)
 - [Claude Code 2.1.220 / Fable 5 / high / hi-en-v1 / macOS arm64](2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)
+- [Claude Code 2.1.220 / Opus 5 / high / hi-en-v1 / macOS arm64](2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)
 
 目录约定见[贡献指南](../CONTRIBUTING.md#场景包目录)。

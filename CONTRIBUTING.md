@@ -6,6 +6,19 @@ Agent Hi Tax 是一个轻松但尽量可复核的观察项目。它不是模型�
 
 本指南当前为中文，机器字段保持英文。未来的 `CONTRIBUTING.en.md` 将与本页共用同一协议版本、模板和数据目录。
 
+## 外部贡献者最短路径
+
+第一次参与时，按下面顺序即可：
+
+1. Fork 并 clone 本仓库，为一个场景新建一个分支。
+2. 选择最接近的采集适配器：[Codex CLI](docs/adapters/codex-cli.zh-CN.md)或[Claude Code](docs/adapters/claude-code.zh-CN.md)。其他 Agent 先按本页通用语义采集，并在 PR 中说明产品差异。
+3. 先固定场景和 launch command，再顺序执行至少 3 次 fresh attempt；不要边测边改模型、effort、权限模式或插件状态。
+4. 原始截图和原始 session/transcript 先留在 Git 仓库外；只有脱敏副本和最小机器事件可以进入 PR。
+5. 复制[场景模板](templates/scenario-manifest.yaml)、[单次模板](templates/attempt-result.yaml)，并参考与自己产品最接近的[三个完整样板](runs/README.md)。
+6. 生成哈希，运行 `./scripts/verify-all.sh`，再使用仓库的 Pull Request 模板提交。
+
+不必为了追求 Level A 而解析不理解的内部日志。只有截图时可以诚实提交 Level B；字段拿不到就使用固定缺失状态。未经脱敏的原图、账号信息和 session 标识绝不能先上传、再等待维护者删除。
+
 ## 最重要的六条规则
 
 1. **一个场景至少做 3 次有效独立运行。** 三次顺序执行，不并行；每次使用新会话和新工作区，除非场景本身声明为 warm 或 resumed。
@@ -155,6 +168,8 @@ Windows 或其他 Agent 使用等价的原生命令。公开转录时把 home �
 
 MCP 即使没有实际调用，也可能因为工具定义进入上下文而影响 input tokens，因此要记录启动状态。`AGENTS.md`、skills、plugins 和其他规则同理。
 
+不同 Agent 的具体命令见[Codex CLI 采集适配器](docs/adapters/codex-cli.zh-CN.md)和[Claude Code 采集适配器](docs/adapters/claude-code.zh-CN.md)。适配器只标准化采集动作，不要求贡献者为了测试关闭已有的代理、sandbox 或账号安全措施；这些设置属于场景，保持不变并如实记录即可。
+
 ### 4. 顺序执行至少三次
 
 对 R1、R2、R3 依次执行：
@@ -162,16 +177,25 @@ MCP 即使没有实际调用，也可能因为工具定义进入上下文而影�
 1. 新建一个独立工作区；空目录场景要确认目录为空且不是 Git 仓库。
 2. 启动一个新会话。fresh 场景不得先退出再 resume。
 3. 在第一次模型请求前确认模型和 effort。产品本地的 `/status` 一类命令可以使用，但不要发送额外聊天消息。
-4. 只发送一次精确 prompt。
-5. 回复完成后，截图保存输入与完整回复。
-6. 正常退出并保存原生 usage；能够取得时保留原始事件日志。
-7. 本次结束后再开始下一次，不并行运行三个 attempt。
+4. 同时确认 footer、permission 或 execution mode 没有在三个 attempt 之间变化；发生变化就建立新场景或明确标成混杂。
+5. 只发送一次精确 prompt。
+6. 回复完成后，截图保存输入与完整回复。
+7. 正常退出并保存原生 usage；能够取得时保留原始事件日志。
+8. 本次结束后再开始下一次，不并行运行三个 attempt。
 
 如果某次误输入、resume、改参数、目录不空、网络失败或发生了额外交互，把它保留并标为 `invalid` 或 `error`，说明原因，然后追加新 attempt，直到有至少 3 次有效运行。不要删除异常值，也不要只挑最省 token 的三次。
 
 ### 5. 生成公开场景包
 
 所有运行结束后，复制模板并按[场景包目录](#场景包目录)整理。原始日志只提取与本场景有关的最小事件；保留时间、模型、effort、usage 和回复，移除账号、绝对路径、会话恢复标识和无关内容。
+
+不要从空白文件猜测产品字段。请复制最接近的完整样板，再替换为自己的证据和数据：
+
+- [Codex CLI 0.147.0 / GPT-5.6 Sol / high](runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)
+- [Claude Code 2.1.220 / Fable 5 / high](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)
+- [Claude Code 2.1.220 / Opus 5 / high](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)
+
+如果参照样板与当前产品版本不一致，记录差异，不要为了“看起来一致”而修改原生字段含义。
 
 ### 6. 生成哈希并校验
 
@@ -270,7 +294,7 @@ runs/YYYY-MM-DD/<scenario-id>/
       ...
 ```
 
-场景字段模板见 [`templates/scenario-manifest.yaml`](templates/scenario-manifest.yaml)，单次结果模板见 [`templates/attempt-result.yaml`](templates/attempt-result.yaml)。第一个完整实例位于 [`runs/2026-08-14/`](runs/2026-08-14/)。
+场景字段模板见 [`templates/scenario-manifest.yaml`](templates/scenario-manifest.yaml)，单次结果模板见 [`templates/attempt-result.yaml`](templates/attempt-result.yaml)，模板选择和可选字段说明见 [`templates/README.md`](templates/README.md)。三个完整实例统一列在 [`runs/README.md`](runs/README.md)。
 
 ## 隐私与脱敏
 
@@ -284,6 +308,13 @@ runs/YYYY-MM-DD/<scenario-id>/
 - 带 secret 或签名参数的 URL。
 
 截图可裁剪，必要时使用完全不透明色块并展平。不要用可逆模糊。脱敏不能改变用量数字、事件顺序或关键时间。
+
+视觉证据有两条合规路径：
+
+1. **公开脱敏图：** 贡献者自己制作不透明遮挡副本，逐张目视检查；原图留在本机，PR 只提交脱敏副本、遮挡说明和原图／副本哈希。
+2. **暂不公开视觉证据：** 原图继续留在贡献者本机，不上传到公开 Issue、PR、网盘或聊天附件。先提交非敏感数据并标 `not_provided`；只有维护者已经通过双方同意的私密渠道核对过原件，才可以改标 `private_evidence` 并登记哈希。
+
+`private_evidence` 表示维护者确实看过原件，不等于“贡献者电脑上可能还有一张图”。如果没有既定私密渠道，不要临时把原图发送给陌生账号，也不要在公开 PR 中询问应该遮哪一块。
 
 如果原图只能私下保留，可以在 `private-evidence.md` 登记 SHA-256 和未公开原因。这个哈希只提供后续核对锚点，不等于公开证明。
 
@@ -299,6 +330,8 @@ runs/YYYY-MM-DD/<scenario-id>/
 - 任何协议偏差；
 - 校验脚本输出；
 - 为什么共享额度可归因，或为什么被标为 contaminated。
+
+仓库的 [Pull Request 模板](.github/pull_request_template.md)已经包含这些字段和提交前检查项。建议先开 Draft PR，等自动验证通过并完成截图目视检查后再标记 Ready for review。自动验证只能检查结构、算术、哈希和文本隐私线索，不能证明截图遮挡正确，也不能替代人工核对。
 
 审核重点是内部一致性、字段状态、脱敏和是否避免过度结论，不是要求每个产品都暴露完全相同的数据。
 

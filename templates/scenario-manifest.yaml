@@ -18,10 +18,12 @@ agent:
   surface: "cli|web|desktop|ide|api|other"
   version: "<exact version or not_exposed>"
   build: "<exact build or not_exposed>"
+  executable: "<sanitized executable path, command name, or not_applicable>"
 
 environment:
   os: "<name>"
   os_version: "<version>"
+  os_build: "<build or not_exposed>"
   architecture: "<architecture>"
   locale: "<locale or not_exposed>"
   timezone: "<IANA timezone>"
@@ -32,6 +34,7 @@ account:
   usage_multiplier: "<native label or not_exposed>"
   billing_mode: "included-quota|pay-as-you-go|credits|local-compute|unknown"
   quota_shared_scope: "account|workspace|team|api-project|gateway-balance|not_applicable|unknown"
+  plan_evidence_status: "verified|private_evidence|self_reported|not_exposed|not_provided|not_applicable"
 
 route:
   category: "first-party-subscription|official-api|third-party-gateway|self-hosted"
@@ -46,7 +49,7 @@ route:
 model:
   requested: "<exact selector>"
   observed: "<event/UI value or not_exposed>"
-  observation_method: "ui-status|cli-status|event-log|local-session-transcript|provider-receipt|not_exposed"
+  observation_method: "<ui-status, cli-status, event-log, local-session-transcript, provider-receipt, combined method, or not_exposed>"
 
 reasoning:
   effort_requested: "<native label or not_exposed>"
@@ -89,6 +92,25 @@ prompt:
   language: "en"
   leading_whitespace: false
   trailing_whitespace: false
+  submit_method: "typed|pasted|file|api|other|not_exposed"
+
+# Keep native provider fields in each attempt. These definitions make the
+# scenario-wide primary and derived metrics explicit without pretending that
+# every Agent uses the same token schema.
+measurement:
+  primary_metric: "<native or explicitly derived field>"
+  secondary_metric: "<field or not_applicable>"
+  native_input_definition: "<definition or not_exposed>"
+  total_input_definition: "<formula or not_applicable>"
+  context_total_definition: "<formula or not_applicable>"
+  total_input_is_subscription_cost: false
+  latency_method: "<method>"
+  transcript_extraction: "<method or not_applicable>"
+  transcript_deduplication: "<rule or not_applicable>"
+
+# Add one mapping per metric actually summarized in the scenario README.
+# Copy the structure from the closest completed sample; do not invent fields.
+aggregate: {}
 
 quota:
   attribution: "valid|contaminated|not_measured|not_exposed"
@@ -100,13 +122,26 @@ evidence:
   field_statuses:
     agent_version: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
     subscription_plan: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    usage_multiplier: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    route: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
     model: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
     reasoning_effort: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
     harness: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
     environment: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    workspace_and_session: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    skills_and_hooks: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
+    mcp_plugins_and_hooks: "verified|private_evidence|self_reported|not_exposed|not_provided|conflicted|not_applicable"
   public_files: []
   withheld_private_evidence: false
   redactions: []
+
+# Omit this block when no cross-scenario claim is made. When a comparison has
+# an uncontrolled variable, record it instead of attributing the difference.
+comparison:
+  status: "<controlled|confounded|mode-confounded|other, or omit block>"
+  reference_scenario: "<scenario id or not_applicable>"
+  confounder: "<uncontrolled variable or not_applicable>"
+  notes: ""
 
 protocol:
   deviations: []
