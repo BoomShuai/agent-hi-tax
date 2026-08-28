@@ -8,6 +8,8 @@ Agent Hi Tax 是一个轻松但尽量可复核的观察项目。它不是模型�
 
 ## 外部贡献者最短路径
 
+想先挑一个具体任务，或需要更手把手的逐步指引，参见[待测场景清单](docs/wanted-scenarios.zh-CN.md)和[实测指南](docs/contributor-walkthrough.zh-CN.md)。
+
 第一次参与时，按下面顺序即可：
 
 1. Fork 并 clone 本仓库，为一个场景新建一个分支。
