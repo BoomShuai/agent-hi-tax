@@ -1,6 +1,8 @@
 # 实测指南：从领任务到提交 PR
 
-> 第一次参与的贡献者照着本页从上往下做即可。规则细节以[贡献指南](../CONTRIBUTING.md)为准，本页负责把它变成一条能走完的路。
+[English](contributor-walkthrough.md) | **中文**
+
+> 第一次参与的贡献者照着本页从上往下做即可。规则细节以[贡献指南](../CONTRIBUTING.zh-CN.md)为准，本页负责把它变成一条能走完的路。
 
 ## 一、你要做的事，一句话
 
@@ -55,7 +57,7 @@
 
 ### 3. 花 10 分钟记住六条规则
 
-完整版见[贡献指南](../CONTRIBUTING.md#最重要的六条规则)，速记版：
+完整版见[贡献指南](../CONTRIBUTING.zh-CN.md#最重要的六条规则)，速记版：
 
 1. 一个场景至少 3 次有效独立运行，顺序执行不并行；
 2. 场景变量中途不许变，变了就是另一个场景；
@@ -94,7 +96,7 @@ git checkout -b run/<产品>-<模型>-<日期>
 - [Claude Code](adapters/claude-code.zh-CN.md)
 - [WorkBuddy Desktop](adapters/workbuddy-desktop.zh-CN.md)
 
-产品没有适配器时，按[贡献指南](../CONTRIBUTING.md)的通用语义采集，并把产品差异记下来写进 PR。适配器不要求你关闭已有代理、sandbox 或账号安全设置——它们属于场景的一部分，保持原样并如实记录。
+产品没有适配器时，按[贡献指南](../CONTRIBUTING.zh-CN.md)的通用语义采集，并把产品差异记下来写进 PR。适配器不要求你关闭已有代理、sandbox 或账号安全设置——它们属于场景的一部分，保持原样并如实记录。
 
 ### 第 2 步：固定场景（这一步就是"预注册"）
 
@@ -148,7 +150,7 @@ mkdir -p ~/hi-tax-evidence/<场景名>
 
 ### 第 6 步：整理场景包
 
-在 `runs/YYYY-MM-DD/<scenario-id>/` 下建立如下结构（详见[贡献指南·场景包目录](../CONTRIBUTING.md#场景包目录)）：
+在 `runs/YYYY-MM-DD/<scenario-id>/` 下建立如下结构（详见[贡献指南·场景包目录](../CONTRIBUTING.zh-CN.md#场景包目录)）：
 
 ```text
 runs/YYYY-MM-DD/<scenario-id>/
@@ -162,7 +164,7 @@ runs/YYYY-MM-DD/<scenario-id>/
   attempts/r1 r2 r3/        # 每次的 result.yaml、response.txt、response.png、精简事件日志
 ```
 
-**不要从空白模板开始猜字段。** 从[四个完整样板](../runs/README.md)里挑与你产品最接近的一个，整包复制后逐项替换成自己的数据。厂商原生字段的含义不要为了"看起来一致"而修改；不适用写 `not_applicable`，没暴露写 `not_exposed`，没拿到写 `not_provided`。
+**不要从空白模板开始猜字段。** 从[四个完整样板](../runs/README.zh-CN.md)里挑与你产品最接近的一个，整包复制后逐项替换成自己的数据。厂商原生字段的含义不要为了"看起来一致"而修改；不适用写 `not_applicable`，没暴露写 `not_exposed`，没拿到写 `not_provided`。
 
 ### 第 7 步：脱敏
 
@@ -201,12 +203,12 @@ python3 scripts/build-results-index.py
 ./scripts/verify-all.sh
 ```
 
-两条都通过、`RESULTS.md` 已更新，才算打包完成。CI 会检查索引是否与场景包漂移。
+两条都通过、`RESULTS.md` 与 `RESULTS.zh-CN.md` 已更新，才算打包完成。CI 会检查索引是否与场景包漂移。
 
 ### 第 10 步：提交 Pull Request
 
 ```sh
-git add runs/ RESULTS.md
+git add runs/ RESULTS.md RESULTS.zh-CN.md
 git commit -m "data: add <场景一句话描述> sample"
 git push -u origin <分支名>
 ```
@@ -222,7 +224,7 @@ CI 自动检查包结构、算术一致性、哈希和文本隐私线索；维�
 - cached input 被重复相加（注意你的厂商是"子集"口径还是"相加"口径）；
 - 截图漏遮邮箱、用户名或 session ID；
 - `SHA256SUMS` 不是最后生成的（改了文件没重新生成）；
-- 忘记重建根级 `RESULTS.md`；
+- 忘记重建根级索引（`RESULTS.md` 与 `RESULTS.zh-CN.md`）；
 - 把共享额度差值直接说成"这次 hi 的成本"而没有归因说明。
 
 ## 六、常见问题
@@ -258,7 +260,7 @@ CI 自动检查包结构、算术一致性、哈希和文本隐私线索；维�
 - [ ] 共享额度污染已标注；
 - [ ] 公开文件无凭据、邮箱、用户名、home 路径、会话恢复标识；截图逐张目视检查过；
 - [ ] `SHA256SUMS` 是最后生成的；
-- [ ] `RESULTS.md` 已重建，`./scripts/verify-all.sh` 通过；
+- [ ] `RESULTS.zh-CN.md` 已重建，`./scripts/verify-all.sh` 通过；
 - [ ] PR 模板填写完整，一个 PR 只有一个场景。
 
 ---

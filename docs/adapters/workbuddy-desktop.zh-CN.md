@@ -2,7 +2,7 @@
 
 > 当前样板验证版本：WorkBuddy 5.3.13（macOS）。其他版本可以使用，但必须记录 UI、SQLite 和 JSONL schema 差异。
 
-本页把[通用贡献协议](../../CONTRIBUTING.md)映射成 WorkBuddy 桌面 IDE 的具体动作。WorkBuddy 的完整状态不能由命令行直接建立：终端只负责环境预检和空目录准备，目录选择、模型、场景、权限、新建会话和 prompt 提交都在 GUI 中人工完成。
+本页把[通用贡献协议](../../CONTRIBUTING.zh-CN.md)映射成 WorkBuddy 桌面 IDE 的具体动作。WorkBuddy 的完整状态不能由命令行直接建立：终端只负责环境预检和空目录准备，目录选择、模型、场景、权限、新建会话和 prompt 提交都在 GUI 中人工完成。
 
 ## 一、场景级预检，只做一次
 

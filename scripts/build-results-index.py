@@ -33,21 +33,140 @@ MISSING_VALUES = {
 }
 
 ROUTE_LABELS = {
-    "first-party-subscription": "官方订阅",
-    "first-party-product": "官方产品",
-    "official-api": "官方 API",
-    "third-party-gateway": "第三方中转",
-    "self-hosted": "自部署",
+    "en": {
+        "first-party-subscription": "official subscription",
+        "first-party-product": "official product",
+        "official-api": "official API",
+        "third-party-gateway": "third-party gateway",
+        "self-hosted": "self-hosted",
+    },
+    "zh": {
+        "first-party-subscription": "官方订阅",
+        "first-party-product": "官方产品",
+        "official-api": "官方 API",
+        "third-party-gateway": "第三方中转",
+        "self-hosted": "自部署",
+    },
 }
 
 VISUAL_LABELS = {
-    "public": "公开视觉",
-    "private_evidence": "私有视觉",
-    "not_provided": "无视觉证据",
+    "en": {
+        "public": "public visuals",
+        "private_evidence": "private visuals",
+        "not_provided": "no visuals",
+    },
+    "zh": {
+        "public": "公开视觉",
+        "private_evidence": "私有视觉",
+        "not_provided": "无视觉证据",
+    },
 }
 
 COMPARISON_LABELS = {
-    "mode-confounded": "对比受 mode 混杂",
+    "en": {"mode-confounded": "mode-confounded comparison"},
+    "zh": {"mode-confounded": "对比受 mode 混杂"},
+}
+
+LATENCY_METHOD_LABELS = {
+    "en": {
+        "event_timestamps": "event timestamps",
+        "ui_whole_seconds": "UI whole seconds",
+        "mixed": "mixed",
+    },
+    "zh": {
+        "event_timestamps": "事件时间戳",
+        "ui_whole_seconds": "UI 整秒",
+        "mixed": "未统一",
+    },
+}
+
+TEXTS = {
+    "en": {
+        "language_switch": "**English** | [中文](RESULTS.zh-CN.md)",
+        "tagline": (
+            "> Not a simple leaderboard: an aggregation of the observable "
+            "token footprint, latency, and evidence strength of the same "
+            "prompt across Agent harnesses."
+        ),
+        "nav": (
+            "[Project home](README.md) | [Scenario catalog](runs/README.md) "
+            "| [Contribution & semantics rules](CONTRIBUTING.md)"
+        ),
+        "count_scenarios": "- Scenarios: ",
+        "count_agents": "- Agent products: ",
+        "count_attempts": "- Valid attempts: ",
+        "rules_heading": "## How to read this table",
+        "rules": [
+            "1. Only compare rows whose prompt, session state, harness "
+            "profile, and other conditions are close; every row links to "
+            "the full scenario.",
+            '2. "Total input" is a shared display name, not a shared vendor '
+            "field: Codex uses its native input including cached input; "
+            "Claude uses the sum of regular input, cache creation, and "
+            "cache read.",
+            '3. "Context total" is this scenario\'s explicitly defined total '
+            "input plus output. It describes token footprint only — it is "
+            "not API cost, subscription quota, or credits.",
+            "4. The label after latency indicates measurement precision; "
+            "event timestamps and whole-second UI displays must not pretend "
+            "to share the same precision.",
+            "5. Table numbers show the median; parentheses show min–max. "
+            "See each scenario page for native cache fields and "
+            "per-attempt details.",
+        ],
+        "exact_input": "exact input",
+        "table_header": (
+            "| Agent / version | Model · Effort | Plan / route | Harness "
+            "| N | Total input | Context total | Output | Latency "
+            "| Evidence / quota attribution |"
+        ),
+        "update_heading": "## Updating this page",
+        "update_body": (
+            "This page is generated from the scenario packages. After "
+            "adding or modifying a scenario, run:"
+        ),
+        "update_footer": (
+            "Pull Requests are checked to keep this page consistent with "
+            "all scenario packages."
+        ),
+    },
+    "zh": {
+        "language_switch": "[English](RESULTS.md) | **中文**",
+        "tagline": (
+            "> 不做简单排行榜；汇总相同 prompt 在不同 Agent harness 中的"
+            "可观察 token footprint、延迟与证据强度。"
+        ),
+        "nav": (
+            "[返回项目首页](README.zh-CN.md) | "
+            "[查看场景目录](runs/README.zh-CN.md) | "
+            "[阅读贡献与口径规则](CONTRIBUTING.zh-CN.md)"
+        ),
+        "count_scenarios": "- 场景数：",
+        "count_agents": "- Agent 产品数：",
+        "count_attempts": "- 有效 attempts：",
+        "rules_heading": "## 阅读规则",
+        "rules": [
+            "1. 只在 prompt、会话状态、harness profile 等条件相近时比较；"
+            "每一行都链接到完整场景。",
+            "2. “总输入”是统一展示名，不是统一厂商字段：Codex 使用包含 "
+            "cached input 的原生 input，Claude 使用普通 input、"
+            "cache creation 与 cache read 之和。",
+            "3. “Context total”是该场景明确定义的总输入加 output，"
+            "只描述 token footprint，不等于 API 费用、订阅额度或积分。",
+            "4. 延迟后的标签表示测量精度；事件时间戳与 UI 整秒显示"
+            "不能假装具有相同精度。",
+            "5. 表内数字显示中位数；括号内为最小值–最大值。原生缓存字段"
+            "和每次 attempt 明细请进入场景页查看。",
+        ],
+        "exact_input": "精确输入",
+        "table_header": (
+            "| Agent / 版本 | 模型 · Effort | 订阅 / 路由 | Harness | N "
+            "| 总输入 | Context total | Output | 延迟 | 证据 / 额度归因 |"
+        ),
+        "update_heading": "## 更新这个页面",
+        "update_body": "本页由场景包自动生成。新增或修改场景后运行：",
+        "update_footer": "Pull Request 会检查本页是否与全部场景包保持一致。",
+    },
 }
 
 TICK = chr(96)
@@ -226,15 +345,15 @@ def scenario_summary(repo_root: Path, manifest_path: Path) -> dict[str, object]:
     latency_ui_seconds = collect_numbers(rows, "ui_latency_seconds")
     if len(latency_ms) == len(rows):
         latency_seconds = [value / 1000 for value in latency_ms]
-        latency_method = "事件时间戳"
+        latency_method = "event_timestamps"
         latency_decimals = 3
     elif len(latency_ui_seconds) == len(rows):
         latency_seconds = latency_ui_seconds
-        latency_method = "UI 整秒"
+        latency_method = "ui_whole_seconds"
         latency_decimals = 3
     else:
         latency_seconds = []
-        latency_method = "未统一"
+        latency_method = "mixed"
         latency_decimals = 3
 
     plan = str(value_at(manifest, "account.subscription_plan"))
@@ -297,7 +416,7 @@ def scenario_summary(repo_root: Path, manifest_path: Path) -> dict[str, object]:
     }
 
 
-def render_index(repo_root: Path) -> str:
+def render_index(repo_root: Path, lang: str) -> str:
     manifest_paths = sorted((repo_root / "runs").glob("*/*/manifest.yaml"))
     if not manifest_paths:
         raise ValueError("no scenario manifests found under runs/YYYY-MM-DD/")
@@ -318,26 +437,25 @@ def render_index(repo_root: Path) -> str:
     unique_agents = {str(item["agent"]) for item in scenarios}
     valid_attempts = sum(int(item["valid_attempts"]) for item in scenarios)
 
+    T = TEXTS[lang]
     lines = [
         "<!-- Generated by scripts/build-results-index.py. Do not edit manually. -->",
         "",
         "# Hi Tax Index",
         "",
-        "> 不做简单排行榜；汇总相同 prompt 在不同 Agent harness 中的可观察 token footprint、延迟与证据强度。",
+        T["language_switch"],
         "",
-        "[返回项目首页](README.md) | [查看场景目录](runs/README.md) | [阅读贡献与口径规则](CONTRIBUTING.md)",
+        T["tagline"],
         "",
-        f"- 场景数：{len(scenarios)}",
-        f"- Agent 产品数：{len(unique_agents)}",
-        f"- 有效 attempts：{valid_attempts}",
+        T["nav"],
         "",
-        "## 阅读规则",
+        f"{T['count_scenarios']}{len(scenarios)}",
+        f"{T['count_agents']}{len(unique_agents)}",
+        f"{T['count_attempts']}{valid_attempts}",
         "",
-        "1. 只在 prompt、会话状态、harness profile 等条件相近时比较；每一行都链接到完整场景。",
-        "2. “总输入”是统一展示名，不是统一厂商字段：Codex 使用包含 cached input 的原生 input，Claude 使用普通 input、cache creation 与 cache read 之和。",
-        "3. “Context total”是该场景明确定义的总输入加 output，只描述 token footprint，不等于 API 费用、订阅额度或积分。",
-        "4. 延迟后的标签表示测量精度；事件时间戳与 UI 整秒显示不能假装具有相同精度。",
-        "5. 表内数字显示中位数；括号内为最小值–最大值。原生缓存字段和每次 attempt 明细请进入场景页查看。",
+        T["rules_heading"],
+        "",
+        *T["rules"],
         "",
     ]
 
@@ -351,7 +469,7 @@ def render_index(repo_root: Path) -> str:
         if safe_case_id and (repo_root / prompt_path).is_file():
             case_heading = (
                 f"## {TICK}{markdown_cell(case_id)}{TICK} "
-                f"([精确输入]({markdown_path(prompt_path)}))"
+                f"([{T['exact_input']}]({markdown_path(prompt_path)}))"
             )
         else:
             case_heading = f"## {TICK}{markdown_cell(case_id)}{TICK}"
@@ -359,7 +477,7 @@ def render_index(repo_root: Path) -> str:
             [
                 case_heading,
                 "",
-                "| Agent / 版本 | 模型 · Effort | 订阅 / 路由 | Harness | N | 总输入 | Context total | Output | 延迟 | 证据 / 额度归因 |",
+                T["table_header"],
                 "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
             ]
         )
@@ -376,7 +494,7 @@ def render_index(repo_root: Path) -> str:
                 f"{markdown_cell(item['model'])}"
                 f"<br><sub>{markdown_cell(item['effort'])}</sub>"
             )
-            route_label = ROUTE_LABELS.get(
+            route_label = ROUTE_LABELS[lang].get(
                 str(item["route"]), str(item["route"])
             )
             plan_label = (
@@ -390,20 +508,23 @@ def render_index(repo_root: Path) -> str:
                 f"{markdown_cell(item['architecture'])}</sub>"
             )
             if item["comparison_status"]:
-                comparison_label = COMPARISON_LABELS.get(
+                comparison_label = COMPARISON_LABELS[lang].get(
                     str(item["comparison_status"]),
                     str(item["comparison_status"]),
                 )
                 harness_label += (
                     f"<br><sub>{markdown_cell(comparison_label)}</sub>"
                 )
+            latency_method_label = LATENCY_METHOD_LABELS[lang].get(
+                str(item["latency_method"]), str(item["latency_method"])
+            )
             latency_label = (
                 f"{markdown_cell(item['latency'])} s"
-                f"<br><sub>{markdown_cell(item['latency_method'])}</sub>"
+                f"<br><sub>{markdown_cell(latency_method_label)}</sub>"
                 if item["latency"] != "—"
                 else "—"
             )
-            visual_label = VISUAL_LABELS.get(
+            visual_label = VISUAL_LABELS[lang].get(
                 str(item["visual_access"]), str(item["visual_access"])
             )
             evidence_label = (
@@ -436,16 +557,16 @@ def render_index(repo_root: Path) -> str:
     fence = TICK * 3
     lines.extend(
         [
-            "## 更新这个页面",
+            T["update_heading"],
             "",
-            "本页由场景包自动生成。新增或修改场景后运行：",
+            T["update_body"],
             "",
             f"{fence}sh",
             "python3 scripts/build-results-index.py",
             "./scripts/verify-all.sh",
             fence,
             "",
-            "Pull Request 会检查本页是否与全部场景包保持一致。",
+            T["update_footer"],
             "",
         ]
     )
@@ -478,54 +599,66 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     repo_root = args.repo_root.resolve()
-    output_path = (
+    en_path = (
         args.output
         if args.output.is_absolute()
         else repo_root / args.output
     )
-
-    try:
-        rendered = render_index(repo_root)
-    except (OSError, ValueError) as error:
-        print(f"build-results-index: {error}", file=sys.stderr)
-        return 1
-
-    existing = (
-        output_path.read_text(encoding="utf-8")
-        if output_path.is_file()
-        else ""
+    zh_path = en_path.with_name(
+        en_path.name[: -len(en_path.suffix)] + ".zh-CN" + en_path.suffix
     )
 
-    if args.check:
+    exit_code = 0
+    for lang, output_path in (("en", en_path), ("zh", zh_path)):
+        try:
+            rendered = render_index(repo_root, lang)
+        except (OSError, ValueError) as error:
+            print(f"build-results-index: {error}", file=sys.stderr)
+            return 1
+
+        existing = (
+            output_path.read_text(encoding="utf-8")
+            if output_path.is_file()
+            else ""
+        )
+
+        if args.check:
+            if existing == rendered:
+                print(
+                    f"results index is current: "
+                    f"{output_path.relative_to(repo_root)}"
+                )
+                continue
+            print(
+                f"results index is stale: run {Path(__file__).name}",
+                file=sys.stderr,
+            )
+            diff = difflib.unified_diff(
+                existing.splitlines(),
+                rendered.splitlines(),
+                fromfile=str(output_path),
+                tofile="generated",
+                lineterm="",
+            )
+            for line in diff:
+                print(line, file=sys.stderr)
+            exit_code = 1
+            continue
+
         if existing == rendered:
-            print(f"results index is current: {output_path.relative_to(repo_root)}")
-            return 0
-        print(
-            f"results index is stale: run {Path(__file__).name}",
-            file=sys.stderr,
-        )
-        diff = difflib.unified_diff(
-            existing.splitlines(),
-            rendered.splitlines(),
-            fromfile=str(output_path),
-            tofile="generated",
-            lineterm="",
-        )
-        for line in diff:
-            print(line, file=sys.stderr)
-        return 1
+            print(
+                f"results index unchanged: "
+                f"{output_path.relative_to(repo_root)}"
+            )
+            continue
 
-    if existing == rendered:
-        print(f"results index unchanged: {output_path.relative_to(repo_root)}")
-        return 0
-
-    output_path.write_text(rendered, encoding="utf-8")
-    try:
-        os.chmod(output_path, 0o664)
-    except OSError:
-        pass
-    print(f"results index written: {output_path.relative_to(repo_root)}")
-    return 0
+        output_path.write_text(rendered, encoding="utf-8")
+        try:
+            os.chmod(output_path, 0o664)
+        except OSError:
+            pass
+        print(f"results index written: {output_path.relative_to(repo_root)}")
+    return exit_code
 
 
 if __name__ == "__main__":

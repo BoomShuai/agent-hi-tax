@@ -2,7 +2,7 @@
 
 > 当前样板验证版本：Claude Code 2.1.220。其他版本可以使用，但必须记录版本、UI 和 transcript schema 差异。
 
-本页把[通用贡献协议](../../CONTRIBUTING.md)映射成 Claude Code 的具体动作。保留贡献者既有的 wrapper、代理、sandbox 和账号安全设置；不要为了 Hi Tax 放宽安全边界。它们属于 harness，应在三次 attempt 中保持不变。
+本页把[通用贡献协议](../../CONTRIBUTING.zh-CN.md)映射成 Claude Code 的具体动作。保留贡献者既有的 wrapper、代理、sandbox 和账号安全设置；不要为了 Hi Tax 放宽安全边界。它们属于 harness，应在三次 attempt 中保持不变。
 
 ## 一、场景级预检，只做一次
 

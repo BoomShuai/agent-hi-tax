@@ -2,38 +2,40 @@
 
 # Hi Tax Index
 
-> 不做简单排行榜；汇总相同 prompt 在不同 Agent harness 中的可观察 token footprint、延迟与证据强度。
+**English** | [中文](RESULTS.zh-CN.md)
 
-[返回项目首页](README.md) | [查看场景目录](runs/README.md) | [阅读贡献与口径规则](CONTRIBUTING.md)
+> Not a simple leaderboard: an aggregation of the observable token footprint, latency, and evidence strength of the same prompt across Agent harnesses.
 
-- 场景数：4
-- Agent 产品数：3
-- 有效 attempts：12
+[Project home](README.md) | [Scenario catalog](runs/README.md) | [Contribution & semantics rules](CONTRIBUTING.md)
 
-## 阅读规则
+- Scenarios: 4
+- Agent products: 3
+- Valid attempts: 12
 
-1. 只在 prompt、会话状态、harness profile 等条件相近时比较；每一行都链接到完整场景。
-2. “总输入”是统一展示名，不是统一厂商字段：Codex 使用包含 cached input 的原生 input，Claude 使用普通 input、cache creation 与 cache read 之和。
-3. “Context total”是该场景明确定义的总输入加 output，只描述 token footprint，不等于 API 费用、订阅额度或积分。
-4. 延迟后的标签表示测量精度；事件时间戳与 UI 整秒显示不能假装具有相同精度。
-5. 表内数字显示中位数；括号内为最小值–最大值。原生缓存字段和每次 attempt 明细请进入场景页查看。
+## How to read this table
 
-## `hi-en-v1` ([精确输入](prompts/hi-en-v1.txt))
+1. Only compare rows whose prompt, session state, harness profile, and other conditions are close; every row links to the full scenario.
+2. "Total input" is a shared display name, not a shared vendor field: Codex uses its native input including cached input; Claude uses the sum of regular input, cache creation, and cache read.
+3. "Context total" is this scenario's explicitly defined total input plus output. It describes token footprint only — it is not API cost, subscription quota, or credits.
+4. The label after latency indicates measurement precision; event timestamps and whole-second UI displays must not pretend to share the same precision.
+5. Table numbers show the median; parentheses show min–max. See each scenario page for native cache fields and per-attempt details.
 
-| Agent / 版本 | 模型 · Effort | 订阅 / 路由 | Harness | N | 总输入 | Context total | Output | 延迟 | 证据 / 额度归因 |
+## `hi-en-v1` ([exact input](prompts/hi-en-v1.txt))
+
+| Agent / version | Model · Effort | Plan / route | Harness | N | Total input | Context total | Output | Latency | Evidence / quota attribution |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| [Claude Code 2.1.220](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | claude-fable-5<br><sub>high</sub> | Claude Max<br><sub>官方订阅</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 25,008 (25,008–25,443) | 25,045 (25,045–25,473) | 37 (30–37) | 6 (5–8) s<br><sub>UI 整秒</sub> | A · 公开视觉<br><sub>quota: not_measured</sub> |
-| [Claude Code 2.1.220](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | claude-opus-5<br><sub>high</sub> | Claude Max<br><sub>官方订阅</sub> | as-used · fresh<br><sub>macOS arm64</sub><br><sub>对比受 mode 混杂</sub> | 3 | 24,666 (24,600–24,837) | 24,679 (24,613–24,851) | 13 (13–14) | 5 (4–5) s<br><sub>UI 整秒</sub> | A · 公开视觉<br><sub>quota: not_measured</sub> |
-| [OpenAI Codex CLI 0.147.0](runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-14</sub> | gpt-5.6-sol<br><sub>high</sub> | ChatGPT Pro 20x<br><sub>官方订阅</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 13,950 | 13,964 (13,963–13,964) | 14 (13–14) | 3.561 (3.308–3.657) s<br><sub>事件时间戳</sub> | A · 公开视觉<br><sub>quota: contaminated</sub> |
-| [WorkBuddy 5.3.13](runs/2026-08-15/workbuddy-5.3.13_auto_craft_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | glm-5.2 (R1,R2); deepseek-v4-flash (R3)<br><sub>—</sub> | —<br><sub>官方产品</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 33,043 (32,119–33,193) | 33,479 (32,501–33,824) | 436 (382–631) | 8.47 (7.893–11.628) s<br><sub>事件时间戳</sub> | A · 公开视觉<br><sub>quota: per_attempt_native_credit_verified</sub> |
+| [Claude Code 2.1.220](runs/2026-08-15/claude-code-2.1.220_claude-fable-5_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | claude-fable-5<br><sub>high</sub> | Claude Max<br><sub>official subscription</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 25,008 (25,008–25,443) | 25,045 (25,045–25,473) | 37 (30–37) | 6 (5–8) s<br><sub>UI whole seconds</sub> | A · public visuals<br><sub>quota: not_measured</sub> |
+| [Claude Code 2.1.220](runs/2026-08-15/claude-code-2.1.220_claude-opus-5_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | claude-opus-5<br><sub>high</sub> | Claude Max<br><sub>official subscription</sub> | as-used · fresh<br><sub>macOS arm64</sub><br><sub>mode-confounded comparison</sub> | 3 | 24,666 (24,600–24,837) | 24,679 (24,613–24,851) | 13 (13–14) | 5 (4–5) s<br><sub>UI whole seconds</sub> | A · public visuals<br><sub>quota: not_measured</sub> |
+| [OpenAI Codex CLI 0.147.0](runs/2026-08-14/codex-cli-0.147.0_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-14</sub> | gpt-5.6-sol<br><sub>high</sub> | ChatGPT Pro 20x<br><sub>official subscription</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 13,950 | 13,964 (13,963–13,964) | 14 (13–14) | 3.561 (3.308–3.657) s<br><sub>event timestamps</sub> | A · public visuals<br><sub>quota: contaminated</sub> |
+| [WorkBuddy 5.3.13](runs/2026-08-15/workbuddy-5.3.13_auto_craft_hi-en-v1_as-used_mac-arm64/README.md)<br><sub>2026-08-15</sub> | glm-5.2 (R1,R2); deepseek-v4-flash (R3)<br><sub>—</sub> | —<br><sub>official product</sub> | as-used · fresh<br><sub>macOS arm64</sub> | 3 | 33,043 (32,119–33,193) | 33,479 (32,501–33,824) | 436 (382–631) | 8.47 (7.893–11.628) s<br><sub>event timestamps</sub> | A · public visuals<br><sub>quota: per_attempt_native_credit_verified</sub> |
 
-## 更新这个页面
+## Updating this page
 
-本页由场景包自动生成。新增或修改场景后运行：
+This page is generated from the scenario packages. After adding or modifying a scenario, run:
 
 ```sh
 python3 scripts/build-results-index.py
 ./scripts/verify-all.sh
 ```
 
-Pull Request 会检查本页是否与全部场景包保持一致。
+Pull Requests are checked to keep this page consistent with all scenario packages.
