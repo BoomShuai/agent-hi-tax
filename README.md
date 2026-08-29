@@ -18,6 +18,8 @@ We are in no hurry to decide which agent is "best". First we take a smaller ques
 
 Agent Hi Tax is a community-maintained, evidence-based repository for observing AI agent consumption.
 
+Any agent product is in scope — CLI, IDE, desktop, or web, first-party or third-party, official subscription or self-hosted. The products already sampled are simply where we started; there is no fixed list of accepted agents.
+
 Every test records a complete scenario, including:
 
 - which agent and which carrier were used;
@@ -238,7 +240,7 @@ First-time contributors are encouraged to claim a concrete task directly from th
 If you would like to contribute a test:
 
 1. read the [contributing guide](CONTRIBUTING.md);
-2. pick [Codex CLI](docs/adapters/codex-cli.zh-CN.md) (Chinese), [Claude Code](docs/adapters/claude-code.zh-CN.md) (Chinese), [WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md) (Chinese), or the closest generic capture path;
+2. pick whichever existing adapter is closest — [Codex CLI](docs/adapters/codex-cli.zh-CN.md) (Chinese), [Claude Code](docs/adapters/claude-code.zh-CN.md) (Chinese), [WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md) (Chinese) — or, for any other agent, the generic capture path in the contributing guide;
 3. choose an existing scenario to replicate independently, or propose a new combination;
 4. declare the scenario before executing; run at least 3 valid independent runs sequentially with identical settings;
 5. save `manifest.yaml`, the exact input, the reply, screenshots, and any available machine logs as specified;

@@ -18,6 +18,8 @@
 
 Agent Hi Tax 是一个由社区共同维护、以证据为基础的 AI Agent 消耗观察仓库。
 
+任何 Agent 产品都在观察范围内：CLI、IDE、桌面端或网页端，官方或第三方，官方订阅或本地自部署都可以。已经采过样的产品只是起点，本项目没有一份固定的“可接受 Agent 清单”。
+
 每次测试都会记录一套完整场景，包括：
 
 - 使用了哪个 Agent 和哪一种载体；
@@ -237,7 +239,7 @@ docs/                 方法说明和流程复盘
 如果你希望贡献一次测试：
 
 1. 阅读[贡献指南](CONTRIBUTING.zh-CN.md)；
-2. 选择[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)、[WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)或最接近的通用采集路径；
+2. 选一份最接近的现有适配器——[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)、[WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)——其他 Agent 则走贡献指南里的通用采集路径；
 3. 选择一个现有场景进行独立复测，或提出一个新组合；
 4. 在执行前声明场景；相同设定至少顺序执行 3 次有效独立运行；
 5. 按规范保存 `manifest.yaml`、精确输入、回复、截图和可用的机器日志；

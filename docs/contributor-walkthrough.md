@@ -88,15 +88,15 @@ git checkout -b run/<product>-<model>-<date>
 
 One branch holds one scenario.
 
-### Step 1: Choose a collection adapter
+### Step 1: Choose a collection adapter (or take the generic path)
 
-Pick the one closest to your product and read it through:
+Adapters written so far — pick the one closest to your product and read it through:
 
 - [Codex CLI (Chinese)](adapters/codex-cli.zh-CN.md)
 - [Claude Code (Chinese)](adapters/claude-code.zh-CN.md)
 - [WorkBuddy Desktop (Chinese)](adapters/workbuddy-desktop.zh-CN.md)
 
-If your product has no adapter, collect under the generic semantics in [CONTRIBUTING](../CONTRIBUTING.md) and note the product differences for your PR. Adapters do not require you to disable existing proxies, sandboxes, or account security settings — they are part of the scenario; leave them as they are and record them honestly.
+This list is where sampling has reached, not a restriction on which agents may be submitted: **any agent product is welcome**. If yours has no adapter, collect under the generic semantics in [CONTRIBUTING](../CONTRIBUTING.md), note the product differences for your PR, and — if you feel like it — draft `docs/adapters/<product>.md` as you go, so the next person testing that product has a path to follow. Adapters do not require you to disable existing proxies, sandboxes, or account security settings — they are part of the scenario; leave them as they are and record them honestly.
 
 ### Step 2: Fix the scenario (this step is the "preregistration")
 
