@@ -88,15 +88,15 @@ git checkout -b run/<产品>-<模型>-<日期>
 
 一个分支只放一个场景。
 
-### 第 1 步：选采集适配器
+### 第 1 步：选采集适配器（或走通用路径）
 
-选与你产品最接近的一份，通读一遍：
+目前已经写好的适配器，选与你产品最接近的一份，通读一遍：
 
 - [Codex CLI](adapters/codex-cli.zh-CN.md)
 - [Claude Code](adapters/claude-code.zh-CN.md)
 - [WorkBuddy Desktop](adapters/workbuddy-desktop.zh-CN.md)
 
-产品没有适配器时，按[贡献指南](../CONTRIBUTING.zh-CN.md)的通用语义采集，并把产品差异记下来写进 PR。适配器不要求你关闭已有代理、sandbox 或账号安全设置——它们属于场景的一部分，保持原样并如实记录。
+这份清单只代表采样已经走到哪里，不限制可以提交哪些 Agent：**任何 Agent 产品都欢迎**。你的产品没有适配器时，按[贡献指南](../CONTRIBUTING.zh-CN.md)的通用语义采集，把产品差异记下来写进 PR；有余力的话顺手起草一份 `docs/adapters/<产品>.md`，下一个测同款产品的人就有路可循。适配器不要求你关闭已有代理、sandbox 或账号安全设置——它们属于场景的一部分，保持原样并如实记录。
 
 ### 第 2 步：固定场景（这一步就是"预注册"）
 

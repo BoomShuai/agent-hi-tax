@@ -15,7 +15,7 @@ If you want to pick a concrete task first, or need more hands-on step-by-step gu
 For your first contribution, follow this order:
 
 1. Fork and clone this repository, and create a new branch for one scenario.
-2. Pick the closest collection adapter: [Codex CLI](docs/adapters/codex-cli.zh-CN.md) (Chinese), [Claude Code](docs/adapters/claude-code.zh-CN.md) (Chinese), or [WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md) (Chinese). For other agents, collect according to the general semantics on this page and describe the product differences in your PR.
+2. Pick a collection adapter, or take the generic path. **Any agent product is in scope** — CLI, IDE, desktop, or web. Adapters exist today for [Codex CLI](docs/adapters/codex-cli.zh-CN.md) (Chinese), [Claude Code](docs/adapters/claude-code.zh-CN.md) (Chinese), and [WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md) (Chinese); that list records the products already sampled, not the products we accept. If yours has no adapter, collect according to the generic semantics on this page, describe the product differences in your PR, and — optionally — include a first draft of `docs/adapters/<product>.md`.
 3. Pin the scenario and launch command first, then execute at least 3 fresh attempts sequentially; do not change the model, effort, permission mode, or plugin state mid-test.
 4. Keep raw screenshots and raw session/transcripts outside the Git repository at first; only redacted copies and minimal machine events may enter the PR.
 5. Copy the [scenario template](templates/scenario-manifest.yaml) and the [attempt template](templates/attempt-result.yaml), and refer to whichever of the [four complete reference samples](runs/README.md) is closest to your product.
@@ -174,7 +174,7 @@ Run the version, system, architecture, and UTC time commands, and save one prefl
 
 Even when MCP is never actually invoked, its tool definitions may enter the context and affect input tokens, so record its startup state. The same applies to `AGENTS.md`, skills, plugins, and other rules.
 
-For agent-specific commands, see the [Codex CLI collection adapter](docs/adapters/codex-cli.zh-CN.md) (Chinese), the [Claude Code collection adapter](docs/adapters/claude-code.zh-CN.md) (Chinese), and the [WorkBuddy Desktop collection adapter](docs/adapters/workbuddy-desktop.zh-CN.md) (Chinese). Adapters only standardize the collection actions; they do not require contributors to disable existing proxies, sandboxes, or account security measures for the sake of testing. Those settings are part of the scenario — keep them unchanged and record them truthfully.
+For agent-specific commands, see the collection adapters written so far: [Codex CLI](docs/adapters/codex-cli.zh-CN.md) (Chinese), [Claude Code](docs/adapters/claude-code.zh-CN.md) (Chinese), and [WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md) (Chinese). Any other agent is equally welcome: use the product's own equivalent of these commands, follow the generic semantics above, and state in your PR where the product's exposed fields differ. Adapters only standardize the collection actions; they do not require contributors to disable existing proxies, sandboxes, or account security measures for the sake of testing. Those settings are part of the scenario — keep them unchanged and record them truthfully.
 
 ### 4. Execute at least three sequential attempts
 

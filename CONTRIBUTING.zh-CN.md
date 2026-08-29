@@ -15,7 +15,7 @@ Agent Hi Tax 是一个轻松但尽量可复核的观察项目。它不是模型�
 第一次参与时，按下面顺序即可：
 
 1. Fork 并 clone 本仓库，为一个场景新建一个分支。
-2. 选择最接近的采集适配器：[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)或[WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)。其他 Agent 先按本页通用语义采集，并在 PR 中说明产品差异。
+2. 选一份采集适配器，或走通用路径。**任何 Agent 产品都在范围内**：CLI、IDE、桌面端或网页端都可以。现有适配器覆盖 [Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md) 和 [WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)，这份清单记录的是已经采过样的产品，不是本项目接受的产品范围。你的产品没有适配器时，按本页通用语义采集，在 PR 中说明产品差异，也欢迎顺手起草一份 `docs/adapters/<产品>.md`。
 3. 先固定场景和 launch command，再顺序执行至少 3 次 fresh attempt；不要边测边改模型、effort、权限模式或插件状态。
 4. 原始截图和原始 session/transcript 先留在 Git 仓库外；只有脱敏副本和最小机器事件可以进入 PR。
 5. 复制[场景模板](templates/scenario-manifest.yaml)、[单次模板](templates/attempt-result.yaml)，并参考与自己产品最接近的[四个完整样板](runs/README.zh-CN.md)。
@@ -174,7 +174,7 @@ Windows 或其他 Agent 使用等价的原生命令。公开转录时把 home �
 
 MCP 即使没有实际调用，也可能因为工具定义进入上下文而影响 input tokens，因此要记录启动状态。`AGENTS.md`、skills、plugins 和其他规则同理。
 
-不同 Agent 的具体命令见[Codex CLI 采集适配器](docs/adapters/codex-cli.zh-CN.md)、[Claude Code 采集适配器](docs/adapters/claude-code.zh-CN.md)和[WorkBuddy Desktop 采集适配器](docs/adapters/workbuddy-desktop.zh-CN.md)。适配器只标准化采集动作，不要求贡献者为了测试关闭已有的代理、sandbox 或账号安全措施；这些设置属于场景，保持不变并如实记录即可。
+已经写好的采集适配器见[Codex CLI](docs/adapters/codex-cli.zh-CN.md)、[Claude Code](docs/adapters/claude-code.zh-CN.md)和[WorkBuddy Desktop](docs/adapters/workbuddy-desktop.zh-CN.md)。其他 Agent 同样欢迎：用该产品自己的等价命令，按上面的通用语义采集，并在 PR 中说明它暴露的字段与这几份适配器的差异。适配器只标准化采集动作，不要求贡献者为了测试关闭已有的代理、sandbox 或账号安全措施；这些设置属于场景，保持不变并如实记录即可。
 
 ### 4. 顺序执行至少三次
 
