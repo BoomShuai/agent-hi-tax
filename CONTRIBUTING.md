@@ -376,7 +376,11 @@ The repository's [Pull Request template](.github/pull_request_template.md) alrea
 
 Review focuses on internal consistency, field states, redaction, and whether overclaiming was avoided — not on requiring every product to expose exactly the same data.
 
-Every data PR receives **at least two independent reviews**, human or AI-assisted; an AI-assisted review names the agent product, the model, and the effort it was performed with. Reviews are posted as structured comments on the PR — the process and the verdict template are in [docs/review-process.md](docs/review-process.md). When the two verdicts disagree, a third review is added. Merging, awarding points, and the final read are the maintainer's; the target response time is about 3 working days.
+Every data PR receives **at least two independent structured reviews**, human or AI-assisted; an AI-assisted review names the agent product, the model, and the effort it was performed with. These reviews are posted as verdict comments on the PR — the process and the verdict template are in [docs/review-process.md](docs/review-process.md). AI-assisted reviewers do not use GitHub's formal **Approve** action. When the two verdicts disagree, a third review is added. Merging, awarding points, and the final read are the maintainer's; the target response time is about 3 working days.
+
+The GitHub ruleset is a separate mechanical gate. It requires one formal approval from a CODEOWNER, the strict `verify` status check on a branch brought up to date with `main`, dismissal of stale approvals when a new commit is pushed, and resolution of every review thread. The one formal CODEOWNER approval does not replace the two independent structured verdict comments, and those two comments do not count as two formal GitHub approvals.
+
+The ruleset also blocks branch creation and updates. Consequently, only the repository's admin bypass role can complete an update to `main`; that bypass is limited to `pull_request`, so even an admin must update `main` through a PR and cannot directly push, force-push, or delete `main`. The maintainer performs the final read and merge after both the project process and the mechanical gate are satisfied.
 
 Pre-submission checklist:
 

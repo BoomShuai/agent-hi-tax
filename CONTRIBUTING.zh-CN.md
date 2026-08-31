@@ -376,7 +376,11 @@ runs/YYYY-MM-DD/<scenario-id>/
 
 审核重点是内部一致性、字段状态、脱敏和是否避免过度结论，不是要求每个产品都暴露完全相同的数据。
 
-每个数据 PR 都会收到**至少两份独立评审**，人工或 AI 协助；AI 协助的评审会署明所用的 agent 产品、模型与 effort。评审以结构化评论的形式发在 PR 下，流程与意见模板见 [docs/review-process.zh-CN.md](docs/review-process.zh-CN.md)。两份意见相左时追加第三份。合并、分值发放与最终把关由维护者负责，目标响应时间约 3 个工作日。
+每个数据 PR 都会收到**至少两份独立结构化评审**，人工或 AI 协助；AI 协助的评审会署明所用的 agent 产品、模型与 effort。这些评审以 verdict comment 的形式发在 PR 下，流程与意见模板见 [docs/review-process.zh-CN.md](docs/review-process.zh-CN.md)。AI 协助的评审不使用 GitHub 的正式 **Approve**。两份意见相左时追加第三份。合并、分值发放与最终把关由维护者负责，目标响应时间约 3 个工作日。
+
+GitHub Ruleset 是另一层机械门禁。它要求 1 个 CODEOWNER 的正式批准、基于已与 `main` 同步分支的 strict `verify` 状态检查、新提交使旧批准失效，以及所有 review threads 均已解决。1 个 CODEOWNER 正式批准不能替代两份独立结构化 verdict comment；两份 comment 也不等于两个 GitHub 正式批准。
+
+Ruleset 同时阻止分支 creation 和 update，因此只有仓库的 admin bypass 角色可以完成对 `main` 的更新；该 bypass 仅限 `pull_request` 模式，所以 admin 也必须通过 PR 更新 `main`，不能直接 push、force-push 或删除 `main`。项目流程和机械门禁都满足后，由维护者完成终审和合并。
 
 提交前检查：
 

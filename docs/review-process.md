@@ -17,11 +17,19 @@ Review exists for the four things a script cannot do:
 3. **Protocol conformance.** Scenario identity holds across the valid attempts; the [field-level states](../CONTRIBUTING.md#field-level-states) — `not_exposed`, `not_provided`, `self_reported`, `conflicted`, and the rest — are used honestly rather than as a way to look complete; deviations and confounders are registered instead of quietly dropped; the directory name and `scenario.id` follow the [GitHub-handle suffix rule](../CONTRIBUTING.md#run-package-layout).
 4. **Restraint of claims.** The package README and the PR text stay within what the evidence supports. A single scenario is one observation of one execution stack; it is not a statement about a model, a vendor, or a price.
 
+## Mechanical gate and project review
+
+GitHub enforces four mechanical conditions before `main` can be updated: one formal CODEOWNER approval, a strict `verify` check on a branch brought up to date with `main`, dismissal of stale approvals after a new commit, and resolution of every review thread. This is intentionally one formal approval, not two.
+
+The project process separately requires two independent structured reviews. Their `APPROVE` or `REQUEST_CHANGES` values are verdict comments, not GitHub review states. AI-assisted reviewers only post these structured comments and never use GitHub's formal **Approve** action. After those reviews, the maintainer performs the final read and merge.
+
+The ruleset's `creation` and `update` rules mean that only the repository admin bypass role can complete an update to `main`. Its bypass mode is `pull_request`: an admin must still use a PR and cannot directly push, force-push, or delete `main`.
+
 ## Review levels
 
 | Level | When it applies | Configuration and decision |
 | --- | --- | --- |
-| **L1 — default** | Ordinary data PRs | At least 2 independent reviews (human, or human-directed with AI assistance), plus the maintainer's final read. Two APPROVE verdicts: the maintainer merges and awards points. Any REQUEST_CHANGES: the contributor revises and the reviewers look again. |
+| **L1 — default** | Ordinary data PRs | At least 2 independent structured reviews (human, or human-directed with AI assistance), plus the maintainer's final read. Two APPROVE verdict comments: the maintainer performs the final read and merges after the separate GitHub gate passes. Any REQUEST_CHANGES verdict: the contributor revises and the reviewers look again. |
 | **L2 — escalated** | The two verdicts disagree; a ★★★ first sample of a new product with no reference package to compare against; any package that carries a `private_evidence` upgrade | A third review is added, from a different model family or a different person than the first two. Two out of three carries the decision, and the maintainer executes it. |
 | **L3 — maintainer only** | Changes to protocol files (`prompts/`, `templates/`, `scripts/`, and the rest of the paths called out in [CODEOWNERS](../.github/CODEOWNERS)); scoring disputes; suspected dishonesty; security incidents | No majority vote. The maintainer decides, and writes the decision back onto the relevant list under the existing meta-rule that pricing and normalization calls are recorded where they were made. |
 

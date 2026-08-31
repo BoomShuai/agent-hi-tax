@@ -1,5 +1,8 @@
-# Every pull request requires a review from a maintainer.
-# See CONTRIBUTING.md for what review focuses on.
+# GitHub's mechanical gate requires one formal CODEOWNER approval. This is
+# separate from the project's two independent structured verdict comments;
+# AI-assisted reviews post verdict comments and never use GitHub Approve.
+# GitHub 机械门禁要求 1 个 CODEOWNER 正式批准；项目另行要求两份独立结构化
+# verdict comment，AI 协助的评审不使用 GitHub Approve。
 *       @keting
 
 # Protocol-level files: changing these changes the meaning of every existing

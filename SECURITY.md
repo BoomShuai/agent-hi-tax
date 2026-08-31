@@ -21,8 +21,10 @@ In the report, include:
 
 - **Acknowledgement**: we aim to respond within 3 working days.
 - **Containment**: for a live credential, rotation or revocation comes first — before any repository cleanup. A commit that removes a secret does not undo the exposure; anything pushed to a public repository must be treated as compromised.
-- **Cleanup**: the affected files are corrected, and where the material is in Git history, the history is rewritten and force-pushed. Rewriting history changes commit hashes; the affected scenario packages have their `SHA256SUMS` regenerated and the results index rebuilt.
+- **Cleanup**: the affected files are corrected. Where the material is in Git history, an emergency history rewrite may be required. Before that rewrite, a maintainer temporarily and explicitly changes the admin ruleset bypass from `pull_request` to `always`, records the change in an auditable incident trail, and verifies the effective rules. The cleanup is then force-pushed; affected scenario packages have their `SHA256SUMS` regenerated and the results index rebuilt because the rewrite changes commit hashes. Immediately after cleanup, the maintainer restores the bypass to `pull_request` and rechecks the repository ruleset and the effective rules on `main`. The temporary `always` mode must never be left in place.
 - **Disclosure**: an incident that affected published data is noted in the affected scenario package, without reproducing the exposed value.
+
+Outside that temporary, explicit, and auditable emergency procedure, the admin bypass is PR-only. It cannot be used to directly push, force-push, or delete `main`.
 
 ## If you are the contributor who made the mistake
 

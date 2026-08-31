@@ -17,11 +17,19 @@
 3. **协议符合度。** 有效 attempts 之间的场景身份保持一致；[字段级状态](../CONTRIBUTING.zh-CN.md#字段级状态)——`not_exposed`、`not_provided`、`self_reported`、`conflicted` 等——是被诚实使用的，而不是用来把包装得"完整"；deviations 与混杂因素如实登记，而不是悄悄略去；目录名与 `scenario.id` 遵守 [GitHub handle 后缀规则](../CONTRIBUTING.zh-CN.md#场景包目录)。
 4. **结论克制。** 包内 README 和 PR 正文都停留在证据能支撑的范围内。一个场景是对一套执行栈的一次观察，不是关于某个模型、某家厂商或某个价格的结论。
 
+## 机械门禁与项目评审
+
+GitHub 在 `main` 更新前执行四项机械条件：1 个 CODEOWNER 正式批准、基于已与 `main` 同步分支的 strict `verify` 检查、新提交使旧批准失效，以及所有 review threads 均已解决。正式批准数有意设置为 1，不是 2。
+
+项目流程另行要求两份独立结构化评审。其中的 `APPROVE` 或 `REQUEST_CHANGES` 是 verdict comment，不是 GitHub review state。AI 协助的评审只发结构化评论，绝不使用 GitHub 的正式 **Approve**。完成这些评审后，由维护者终审并合并。
+
+Ruleset 的 `creation` 和 `update` 规则意味着只有仓库 admin bypass 角色能完成对 `main` 的更新。bypass 模式是 `pull_request`：admin 仍须使用 PR，不能直接 push、force-push 或删除 `main`。
+
 ## 三级评审
 
 | 级别 | 适用 | 配置与判定 |
 | --- | --- | --- |
-| **L1——默认** | 普通数据 PR | 至少 2 份独立评审（人工，或由人主导、AI 协助），外加维护者终审。两份 APPROVE：维护者合并并发放分值。任一 REQUEST_CHANGES：贡献者修改后由评审复看。 |
+| **L1——默认** | 普通数据 PR | 至少 2 份独立结构化评审（人工，或由人主导、AI 协助），外加维护者终审。两份 APPROVE verdict comment：独立的 GitHub 门禁通过后，由维护者终审、合并并发放分值。任一 REQUEST_CHANGES verdict：贡献者修改后由评审复看。 |
 | **L2——升级** | 两份 Verdict 相左；★★★ 新产品的首个样本，没有可对照的参照样板；任何带 `private_evidence` 升级的包 | 追加第三份评审，来自与前两份不同的模型家族或不同的人。三取二形成判定，由维护者执行。 |
 | **L3——维护者独占** | 协议文件改动（`prompts/`、`templates/`、`scripts/`，以及 [CODEOWNERS](../.github/CODEOWNERS) 中另行列出的路径）；计分争议；疑似不诚实；安全事件 | 不走多数决。维护者裁定，并按既有元规则把决定回写到相应清单上——定价与归一化的判断记录在它们发生的地方。 |
 
