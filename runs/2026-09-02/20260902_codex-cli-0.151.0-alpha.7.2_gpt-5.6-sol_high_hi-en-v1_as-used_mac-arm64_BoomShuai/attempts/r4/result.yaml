@@ -56,4 +56,3 @@ deviations:
   - "This supplemental post-registration attempt was collected after the original three-run block to add public visual evidence; it is included without replacing or excluding any original valid attempt."
   - "At launch, Codex persisted a trusted-project registry entry for this new empty run directory; the normalized model-visible prompt hash and effective turn context remained unchanged."
   - "The client emitted one local skill-context budget warning before the final reply."
-
