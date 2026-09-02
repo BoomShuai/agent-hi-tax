@@ -1,0 +1,44 @@
+Same-machine medium/high paired comparison audit
+
+Medium sibling:
+https://github.com/aicodingresearch/agent-hi-tax/pull/50
+20260902_codex-cli-0.151.0-alpha.7.2_gpt-5.6-sol_medium_hi-en-v1_as-used_mac-arm64_BoomShuai
+
+High sibling:
+20260902_codex-cli-0.151.0-alpha.7.2_gpt-5.6-sol_high_hi-en-v1_as-used_mac-arm64_BoomShuai
+
+Held constant and verified from public or retained evidence:
+- contributor, machine, OS version/build, architecture, locale, and timezone;
+- Codex CLI version, account, subscription route, requested/observed model;
+- exact prompt bytes and hash, fresh session state, empty non-Git workspace profile;
+- official exec JSON surface, sandbox, approval policy, and network policy;
+- global AGENTS.md hash, enabled MCP, enabled plugins, 202-skill name inventory/hash;
+- normalized model-visible base/developer/user input hashes;
+- response text, number of model turns, absence of tool calls and approvals.
+
+Intended variable:
+- medium sibling: model_reasoning_effort=medium
+- high sibling: model_reasoning_effort=high
+
+Observed result:
+- each of the six attempts reported input_tokens=20421;
+- each reported cached_input_tokens=11008 and cache_write_input_tokens=0;
+- each reported output_tokens=14 and reasoning_output_tokens=0;
+- each derived non_cached_input_tokens=9413, context_total_tokens=20435, and
+  cli_total_excluding_cached=9427;
+- therefore the observed medium-to-high delta is exactly zero for every native and
+  derived token field reported by this protocol.
+
+Boundary:
+This supports only the narrow observation that the exposed effort setting did not
+change the measured token footprint for this exact hi case in this six-run block.
+It does not establish that effort never affects hidden compute, latency, longer
+outputs, other prompts, or subscription quota. Latencies remain descriptive because
+the two effort blocks were sequential rather than randomized or interleaved.
+
+Known non-model-visible change:
+Codex accumulated path-specific trusted-project registry entries for the new attempt
+directories. The whole private config hash therefore changed, but the normalized
+model-visible input and effective turn-context fields remained identical apart from
+the intended effort value. This is disclosed rather than silently treating the
+entire private config file as byte-identical.

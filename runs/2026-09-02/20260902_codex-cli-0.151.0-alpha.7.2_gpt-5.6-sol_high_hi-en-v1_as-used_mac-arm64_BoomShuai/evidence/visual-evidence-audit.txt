@@ -1,0 +1,26 @@
+Visual evidence audit
+
+Public subscription file: evidence/subscription.png
+Dimensions: 3840 x 2100 pixels
+Format: PNG, 8-bit RGBA, non-interlaced
+SHA-256: 843e01353912b2700581d29a3eef6c4e9e87fe9b0227a08d4590e63a91b7d1e7
+
+Visible support:
+- the usage-and-billing screen identifies the current plan as Pro;
+- the same plan card displays USD 200/month;
+- OpenAI's public pricing documentation viewed on 2026-09-02 maps that tier to
+  ChatGPT Pro 20x: https://learn.chatgpt.com/zh-Hans/docs/pricing
+
+Privacy review:
+- no email address, personal name, username, account ID, order ID, payment detail,
+  hostname, local path, session ID, resume identifier, or credential;
+- no embedded author, creator, download-source, or where-from metadata was found;
+- the screenshot also shows non-identifying quota balances and reset times;
+- no crop, pixel redaction, blur, reconstruction, or generative editing was applied.
+
+Attempt screenshots:
+- R1-R3 terminal sessions were retained with a safe prompt and thread IDs removed
+  from the visible stream;
+- screenshot files are pending contributor capture at this package revision;
+- until those images are present and audited, package-level evidence remains Level C
+  even though plan fields are verified and native machine events are public.
