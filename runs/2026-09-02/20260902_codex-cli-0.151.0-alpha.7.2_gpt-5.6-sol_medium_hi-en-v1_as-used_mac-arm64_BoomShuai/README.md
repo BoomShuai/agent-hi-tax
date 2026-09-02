@@ -10,13 +10,13 @@ This package is a T-13 observation of Codex CLI with `gpt-5.6-sol` at `medium` r
 - Reasoning effort: `medium`
 - Authentication and billing: ChatGPT Pro 20x subscription login, verified post-collection by a public account screenshot
 - Route: first-party subscription, native protocol
-- Session: three fresh sessions, sequentially executed
-- Workspace: three separate empty non-Git directories, still empty after each run
+- Session: six fresh sessions, sequentially executed in an original and a supplemental block
+- Workspace: six separate empty non-Git directories, still empty after each run
 - Valid-run surface: official `codex exec --json`
 - Sandbox and approval: `workspace-write`, restricted filesystem/network, approval policy `never`
 - Harness profile: `as-used`
 - Harness inventory: one enabled MCP server (`node_repl`), 11 enabled plugins, 202 model-visible skill entries, an empty global `AGENTS.md`, and one local notification hook
-- Evidence level: Level C; native machine event records and public subscription evidence are included, but attempt-level visual evidence was unavailable
+- Evidence level: Level A; native machine events cover R1-R6 and public terminal screenshots connect configuration, input, reply, and usage for supplemental R4-R6
 
 ## Results
 
@@ -25,12 +25,15 @@ This package is a T-13 observation of Codex CLI with `gpt-5.6-sol` at `medium` r
 | R1 | 20,421 | 11,008 | 9,413 | 14 | 0 | 20,435 | 9,427 | 1,727 ms |
 | R2 | 20,421 | 11,008 | 9,413 | 14 | 0 | 20,435 | 9,427 | 3,761 ms |
 | R3 | 20,421 | 11,008 | 9,413 | 14 | 0 | 20,435 | 9,427 | 1,883 ms |
+| R4 | 20,421 | 11,008 | 9,413 | 14 | 0 | 20,435 | 9,427 | 2,898 ms |
+| R5 | 20,421 | 11,008 | 9,413 | 14 | 0 | 20,435 | 9,427 | 1,611 ms |
+| R6 | 20,421 | 11,008 | 9,413 | 14 | 0 | 20,435 | 9,427 | 2,161 ms |
 
-All three valid runs produced the same visible reply:
+All six valid runs produced the same visible reply:
 
 > Hi! What would you like to work on?
 
-The native input, cached input, non-cached input, output, reasoning output, and context total were identical across the three attempts. Latency varied and is retained only as descriptive metadata.
+The native input, cached input, non-cached input, output, reasoning output, and context total were identical across all six attempts. Latency varied and is retained only as descriptive metadata.
 
 Codex reports cached input as a subset of input:
 
@@ -53,16 +56,18 @@ Each `exec` run emitted the same local client warning: skill descriptions were s
 
 This is part of the measured `as-used` harness rather than a reason to discard the attempts. The full public-safe name inventory is in [available-skill-names.txt](evidence/available-skill-names.txt).
 
-The preregistration and initial preflight recorded 199 skill names because the first public-safe parser truncated names at the first colon and collapsed three namespaced siblings. Post-run inspection of each retained rollout found the same 202 full names and the same inventory hash in R1–R3. This is a measurement-extraction correction, not a runtime configuration change; details are in [post-run-audit.txt](evidence/post-run-audit.txt).
+The preregistration and initial preflight recorded 199 skill names because the first public-safe parser truncated names at the first colon and collapsed namespaced siblings. Post-run inspection of each retained rollout found the same 202 unique full names and the same inventory hash in R1–R6. This is a measurement-extraction correction, not a runtime configuration change; details are in [post-run-audit.txt](evidence/post-run-audit.txt).
 
 ## Evidence and deviations
 
 The public package contains the exact prompt, launch command, preregistration record, public-safe preflight and harness inventory, workspace checks, sanitized event logs, result records, subscription screenshot, visual-evidence audit, and hashes. Raw `exec` JSONL and rollout files remained outside Git. Public events retain only version, model, effort, the exact target `hi`, final reply, timestamps, and native usage.
 
-An initial TUI preflight was cancelled before any target model request because the host PTY did not render a usable interface. It is preserved as `attempts/r0/result.yaml` and excluded from the three valid repetitions. Before R1, the valid-run surface was fixed to official `codex exec --json` and then held constant through R3.
+An initial TUI preflight was cancelled before any target model request because the host PTY did not render a usable interface. It is preserved as `attempts/r0/result.yaml` and excluded from the six valid repetitions. Before R1, the valid-run surface was fixed to official `codex exec --json` and held constant through the original R1-R3 block. The same command and harness were reused for supplemental R4-R6.
 
-No attempt-level screenshot was available because local Computer Use safety controls denied access to both Terminal and the Codex host application. No attempt screenshot was generated or reconstructed. The later account screenshot verifies only the subscription plan; it does not connect configuration, input, and reply for R1-R3, so package-level evidence remains Level C.
+R1-R3 have no attempt screenshots because their background PTYs could not be reattached to a visible app terminal. They remain valid machine-record attempts. R4-R6 were added after the original block, without replacing any run, specifically to collect public visual evidence. Their byte-identical public terminal-content captures show version, model, medium effort, exact `hi`, fresh/empty assertions, fixed command, full reply, native usage, and exit 0. This combination of native events and public visual evidence raises the package to Level A.
 
-## Comparison boundary
+## Same-machine effort pair
 
-T-13 is intended to extend the effort axis from `high` to `medium`, but this contribution does not include a same-machine high-effort sibling package. Published high-effort packages also differ in harness inventory, version, OS, account, or capture time. Therefore this package establishes a reproducible medium-effort observation, but it does not by itself identify a token difference caused only by effort.
+The same-machine [high-effort sibling PR #53](https://github.com/aicodingresearch/agent-hi-tax/pull/53) now contains six matching attempts. Across all twelve rollouts, version, account, OS, route, prompt, workspace profile, sandbox, approval mode, MCP, plugins, `AGENTS.md`, skill inventory, and normalized model-visible inputs were held constant apart from effort.
+
+Every attempt reported 20,421 input including 11,008 cached, 9,413 non-cached, zero cache write, and zero reasoning output. High R4 produced a different 13-token greeting; the other eleven replies used 14 output tokens. Both six-run blocks still have identical medians for every token field. The supported conclusion is therefore a zero observed injected-input-footprint delta for this exact `hi` case; the one greeting variation is retained and not attributed to effort. Hidden compute, quota, latency, longer outputs, and other prompts remain outside that conclusion.

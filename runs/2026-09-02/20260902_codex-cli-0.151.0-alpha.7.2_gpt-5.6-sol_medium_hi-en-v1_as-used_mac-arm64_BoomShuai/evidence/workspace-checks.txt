@@ -23,3 +23,24 @@ git rev-parse --show-toplevel: fatal: not a git repository
 top-level entries: none
 r3 post-run
 top-level entries: none
+
+r4 supplemental visual-evidence attempt
+utc: 2026-09-02T03:08:13Z
+workspace: <LAB_ROOT>/codex-medium-BoomShuai-r4
+git rev-parse --show-toplevel: fatal: not a git repository
+top-level entries before request: none
+top-level entries after run: none
+
+r5 supplemental visual-evidence attempt
+utc: 2026-09-02T03:09:26Z
+workspace: <LAB_ROOT>/codex-medium-BoomShuai-r5
+git rev-parse --show-toplevel: fatal: not a git repository
+top-level entries before request: none
+top-level entries after run: none
+
+r6 supplemental visual-evidence attempt
+utc: 2026-09-02T03:09:43Z
+workspace: <LAB_ROOT>/codex-medium-BoomShuai-r6
+git rev-parse --show-toplevel: fatal: not a git repository
+top-level entries before request: none
+top-level entries after run: none
