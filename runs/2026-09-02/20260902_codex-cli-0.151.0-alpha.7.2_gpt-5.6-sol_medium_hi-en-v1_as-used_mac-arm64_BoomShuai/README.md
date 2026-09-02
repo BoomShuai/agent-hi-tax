@@ -8,7 +8,7 @@ This package is a T-13 observation of Codex CLI with `gpt-5.6-sol` at `medium` r
 - Agent: first-party OpenAI Codex CLI 0.151.0-alpha.7.2
 - Model: `gpt-5.6-sol`
 - Reasoning effort: `medium`
-- Authentication and billing: ChatGPT subscription login; exact plan not exposed
+- Authentication and billing: ChatGPT Pro 20x subscription login (contributor-reported after collection; account screenshot pending)
 - Route: first-party subscription, native protocol
 - Session: three fresh sessions, sequentially executed
 - Workspace: three separate empty non-Git directories, still empty after each run
@@ -45,7 +45,7 @@ cli_total_excluding_cached
   = non_cached_input_tokens + output_tokens
 ```
 
-The CLI total is not interpreted as ChatGPT subscription quota cost. Subscription quota was not measured.
+The CLI total is not interpreted as ChatGPT subscription quota cost. Subscription quota was not measured. The Pro 20x plan label is currently self-reported and does not change any native token value.
 
 ## Harness warning
 

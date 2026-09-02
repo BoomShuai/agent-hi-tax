@@ -30,11 +30,11 @@ environment:
 
 account:
   auth_channel: "subscription-login"
-  subscription_plan: "not_exposed"
-  usage_multiplier: "not_exposed"
+  subscription_plan: "ChatGPT Pro"
+  usage_multiplier: "20x"
   billing_mode: "included-quota"
   quota_shared_scope: "account"
-  plan_evidence_status: "not_exposed"
+  plan_evidence_status: "self_reported"
 
 route:
   category: "first-party-subscription"
@@ -187,8 +187,8 @@ evidence:
   visual_evidence_access: "not_provided"
   field_statuses:
     agent_version: "verified"
-    subscription_plan: "not_exposed"
-    usage_multiplier: "not_exposed"
+    subscription_plan: "self_reported"
+    usage_multiplier: "self_reported"
     route: "self_reported"
     model: "verified"
     reasoning_effort: "verified"
@@ -204,6 +204,7 @@ evidence:
     - "evidence/workspace-checks.txt"
     - "evidence/available-skill-names.txt"
     - "evidence/post-run-audit.txt"
+    - "evidence/subscription-self-report.txt"
     - "attempts/r1/events.sanitized.jsonl"
     - "attempts/r2/events.sanitized.jsonl"
     - "attempts/r3/events.sanitized.jsonl"
@@ -220,4 +221,5 @@ protocol:
     - "Each valid run emitted the same local skill-context budget warning because 202 skill entries exceeded the full-description budget; all skills remained visible with shortened descriptions."
     - "The preregistration counted 199 skill names because its parser collapsed namespaced siblings; post-run inspection corrected the stable R1-R3 inventory to 202 full names without changing the runtime harness."
     - "Subscription quota before/after was not measured."
+    - "After the valid runs and Draft PR were completed, the contributor reported that the subscription was the USD 200/month ChatGPT plan; the current OpenAI pricing documentation identifies that tier as ChatGPT Pro 20x. No account screenshot had been supplied at this revision, so both plan fields remain self_reported."
   notes: "Three successful fresh-session runs were executed sequentially in separate empty non-Git directories with the same model, effort, sandbox, prompt, and CLI arguments."
