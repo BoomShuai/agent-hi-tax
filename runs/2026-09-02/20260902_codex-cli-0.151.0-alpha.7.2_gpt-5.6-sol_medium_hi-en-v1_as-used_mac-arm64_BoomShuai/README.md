@@ -8,7 +8,7 @@ This package is a T-13 observation of Codex CLI with `gpt-5.6-sol` at `medium` r
 - Agent: first-party OpenAI Codex CLI 0.151.0-alpha.7.2
 - Model: `gpt-5.6-sol`
 - Reasoning effort: `medium`
-- Authentication and billing: ChatGPT Pro 20x subscription login (contributor-reported after collection; account screenshot pending)
+- Authentication and billing: ChatGPT Pro 20x subscription login, verified post-collection by a public account screenshot
 - Route: first-party subscription, native protocol
 - Session: three fresh sessions, sequentially executed
 - Workspace: three separate empty non-Git directories, still empty after each run
@@ -16,7 +16,7 @@ This package is a T-13 observation of Codex CLI with `gpt-5.6-sol` at `medium` r
 - Sandbox and approval: `workspace-write`, restricted filesystem/network, approval policy `never`
 - Harness profile: `as-used`
 - Harness inventory: one enabled MCP server (`node_repl`), 11 enabled plugins, 202 model-visible skill entries, an empty global `AGENTS.md`, and one local notification hook
-- Evidence level: Level C; native machine event records are included, but visual evidence was unavailable
+- Evidence level: Level C; native machine event records and public subscription evidence are included, but attempt-level visual evidence was unavailable
 
 ## Results
 
@@ -45,7 +45,7 @@ cli_total_excluding_cached
   = non_cached_input_tokens + output_tokens
 ```
 
-The CLI total is not interpreted as ChatGPT subscription quota cost. Subscription quota was not measured. The Pro 20x plan label is currently self-reported and does not change any native token value.
+The CLI total is not interpreted as ChatGPT subscription quota cost. Subscription quota was not measured. The public [subscription screenshot](evidence/subscription.png) shows Pro at USD 200/month; OpenAI's public pricing documentation identifies that tier as Pro 20x. This post-collection account evidence does not change any native token value.
 
 ## Harness warning
 
@@ -57,11 +57,11 @@ The preregistration and initial preflight recorded 199 skill names because the f
 
 ## Evidence and deviations
 
-The public package contains the exact prompt, launch command, preregistration record, public-safe preflight and harness inventory, workspace checks, sanitized event logs, result records, and hashes. Raw `exec` JSONL and rollout files remained outside Git. Public events retain only version, model, effort, the exact target `hi`, final reply, timestamps, and native usage.
+The public package contains the exact prompt, launch command, preregistration record, public-safe preflight and harness inventory, workspace checks, sanitized event logs, result records, subscription screenshot, visual-evidence audit, and hashes. Raw `exec` JSONL and rollout files remained outside Git. Public events retain only version, model, effort, the exact target `hi`, final reply, timestamps, and native usage.
 
 An initial TUI preflight was cancelled before any target model request because the host PTY did not render a usable interface. It is preserved as `attempts/r0/result.yaml` and excluded from the three valid repetitions. Before R1, the valid-run surface was fixed to official `codex exec --json` and then held constant through R3.
 
-No visual screenshot was available because local Computer Use safety controls denied access to both Terminal and the Codex host application. No screenshot was generated or reconstructed; visual fields are marked `not_provided` and package-level evidence is Level C.
+No attempt-level screenshot was available because local Computer Use safety controls denied access to both Terminal and the Codex host application. No attempt screenshot was generated or reconstructed. The later account screenshot verifies only the subscription plan; it does not connect configuration, input, and reply for R1-R3, so package-level evidence remains Level C.
 
 ## Comparison boundary
 

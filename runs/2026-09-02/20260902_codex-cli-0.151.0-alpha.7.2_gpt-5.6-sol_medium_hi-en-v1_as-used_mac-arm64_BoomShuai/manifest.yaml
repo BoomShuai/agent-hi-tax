@@ -34,7 +34,7 @@ account:
   usage_multiplier: "20x"
   billing_mode: "included-quota"
   quota_shared_scope: "account"
-  plan_evidence_status: "self_reported"
+  plan_evidence_status: "verified"
 
 route:
   category: "first-party-subscription"
@@ -184,11 +184,11 @@ comparison:
 
 evidence:
   package_level: "C"
-  visual_evidence_access: "not_provided"
+  visual_evidence_access: "public"
   field_statuses:
     agent_version: "verified"
-    subscription_plan: "self_reported"
-    usage_multiplier: "self_reported"
+    subscription_plan: "verified"
+    usage_multiplier: "verified"
     route: "self_reported"
     model: "verified"
     reasoning_effort: "verified"
@@ -205,6 +205,8 @@ evidence:
     - "evidence/available-skill-names.txt"
     - "evidence/post-run-audit.txt"
     - "evidence/subscription-self-report.txt"
+    - "evidence/subscription.png"
+    - "evidence/visual-evidence-audit.txt"
     - "attempts/r1/events.sanitized.jsonl"
     - "attempts/r2/events.sanitized.jsonl"
     - "attempts/r3/events.sanitized.jsonl"
@@ -212,6 +214,7 @@ evidence:
   redactions:
     - "Removed complete developer/system context, local absolute paths, session identifiers, and account-related content from public event logs."
     - "Raw exec JSONL and rollout files remain outside Git; public events retain only version, model, effort, the target hi, the final reply, usage, and timestamps."
+    - "The public subscription screenshot is an exact-byte copy of the supplied original. Visual and metadata inspection found no email, name, account ID, payment detail, host identifier, local path, session ID, author tag, or source URL, so no pixel redaction or reconstruction was applied."
 
 protocol:
   deviations:
@@ -221,5 +224,5 @@ protocol:
     - "Each valid run emitted the same local skill-context budget warning because 202 skill entries exceeded the full-description budget; all skills remained visible with shortened descriptions."
     - "The preregistration counted 199 skill names because its parser collapsed namespaced siblings; post-run inspection corrected the stable R1-R3 inventory to 202 full names without changing the runtime harness."
     - "Subscription quota before/after was not measured."
-    - "After the valid runs and Draft PR were completed, the contributor reported that the subscription was the USD 200/month ChatGPT plan; the current OpenAI pricing documentation identifies that tier as ChatGPT Pro 20x. No account screenshot had been supplied at this revision, so both plan fields remain self_reported."
+    - "After the valid runs and Draft PR were completed, the contributor supplied a public-safe account screenshot showing Pro at USD 200/month. OpenAI's current public pricing documentation identifies that tier as ChatGPT Pro 20x, so the plan and multiplier fields are verified post-collection; this does not retroactively provide visual evidence for the three attempts."
   notes: "Three successful fresh-session runs were executed sequentially in separate empty non-Git directories with the same model, effort, sandbox, prompt, and CLI arguments."
