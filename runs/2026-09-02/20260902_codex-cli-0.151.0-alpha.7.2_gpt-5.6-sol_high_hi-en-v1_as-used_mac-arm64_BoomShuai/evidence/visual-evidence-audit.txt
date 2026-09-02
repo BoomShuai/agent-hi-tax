@@ -18,9 +18,35 @@ Privacy review:
 - the screenshot also shows non-identifying quota balances and reset times;
 - no crop, pixel redaction, blur, reconstruction, or generative editing was applied.
 
-Attempt screenshots:
-- R1-R3 terminal sessions were retained with a safe prompt and thread IDs removed
-  from the visible stream;
-- screenshot files are pending contributor capture at this package revision;
-- until those images are present and audited, package-level evidence remains Level C
-  even though plan fields are verified and native machine events are public.
+Supplemental attempt screenshots
+
+attempts/r4/response.png
+- dimensions: 1692 x 648 pixels
+- SHA-256: ab87bbad7d413d6ee2df223b66c30d0212ec32c83d673f9e3951d1d83a4e1f0d
+
+attempts/r5/response.png
+- dimensions: 1702 x 692 pixels
+- SHA-256: 4bb8ad1be0cf696010d569d2acb5fac0fdd2a0c86717ddd122045a7f4b960843
+
+attempts/r6/response.png
+- dimensions: 1692 x 666 pixels
+- SHA-256: dcec58b573fe9bfa0002dda3cc8aa9a2ce5aeb46ef2cf7caf3c533998c7ead73
+
+Visible support in each R4-R6 image:
+- Codex CLI version 0.151.0-alpha.7.2, gpt-5.6-sol, and high effort;
+- exact hi input, fresh-session and empty-workspace assertions, and fixed command;
+- complete assistant reply, native input/cache/output/reasoning usage, and exit 0.
+
+Attempt-image privacy and provenance review:
+- each public image was inspected at original size and cross-checked against the
+  corresponding retained raw exec event stream and rollout;
+- no title bar, account UI, email, personal name, username, hostname, absolute path,
+  session ID, resume identifier, credential, or unrelated private content is visible;
+- no embedded author, creator, download-source, or where-from metadata was found;
+- the public files are byte-identical to the contributor-supplied terminal-content
+  captures; no post-receipt crop, redaction, blur, reconstruction, resampling, or
+  generative editing was applied;
+- R4-R6 are explicitly supplemental post-registration attempts. R1-R3 remain valid
+  and retained without screenshots; no original attempt was replaced or excluded.
+- High R4 visibly records the alternate 13-token greeting, matching its sanitized
+  event record and result.yaml rather than being normalized to the other attempts.
