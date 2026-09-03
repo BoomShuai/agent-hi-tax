@@ -214,7 +214,6 @@ evidence:
     - "evidence/supplemental-visual-plan.txt"
     - "evidence/preflight.txt"
     - "evidence/mcp-state.json"
-    - "evidence/mcp-tools-summary.json"
     - "evidence/available-skill-names.txt"
     - "evidence/paired-analysis.json"
     - "evidence/post-run-audit.txt"
